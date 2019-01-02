@@ -18,11 +18,19 @@ buildscript {
     }
 }
 
+ext {
+    roomVersion = '1.1.1'
+    archLifecycleVersion = '1.1.1'
+}
+
 allprojects {
     repositories {
         jcenter()
         mavenCentral()
         maven { url 'https://maven.google.com' }
+        maven {
+            url "https://jitpack.io"
+        }
 
     }
 }
