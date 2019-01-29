@@ -85,6 +85,9 @@ dependencies {
     // Material Dialog
     implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
 
+    // Floating Search View
+    compile 'com.github.arimorty:floatingsearchview:2.1.1'
+
     // Room components
     implementation "android.arch.persistence.room:runtime:$rootProject.roomVersion"
     annotationProcessor "android.arch.persistence.room:compiler:$rootProject.roomVersion"

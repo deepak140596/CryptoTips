@@ -1,4 +1,4 @@
-package com.localli.deepak.cryptotips.DataBase;
+package com.localli.deepak.cryptotips.DataBase.favorite;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
@@ -24,4 +24,6 @@ public class FavoriteEntity {
     public String getId(){
         return this.id;
     }
+
+
 }

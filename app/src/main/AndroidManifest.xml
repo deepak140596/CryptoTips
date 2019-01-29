@@ -25,7 +25,9 @@
             android:label="@string/title_activity_navigation"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".news.WebViewActivity" />
-        <activity android:name=".currencydetails.CurrencyDetailsTabsActivity"></activity>
+        <activity android:name=".currencydetails.CurrencyDetailsTabsActivity" />
+        <activity android:name=".portfolio.AddPortfolio" />
+        <activity android:name=".alerts.AddAlertActivity"></activity>
     </application>
 
 </manifest>

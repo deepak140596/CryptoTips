@@ -1,4 +1,4 @@
-package com.localli.deepak.cryptotips.DataBase;
+package com.localli.deepak.cryptotips.DataBase.favorite;
 
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
@@ -10,7 +10,7 @@ import android.content.Context;
  */
 
 
-@Database(entities = {FavoriteEntity.class}, version = 1)
+@Database(entities = {FavoriteEntity.class}, version = 1, exportSchema = false)
 public abstract class FavoriteDatabase extends RoomDatabase{
 
     public abstract FavoriteDAO favoriteDAO();

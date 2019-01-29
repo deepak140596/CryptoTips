@@ -1,4 +1,4 @@
-package com.localli.deepak.cryptotips.DataBase;
+package com.localli.deepak.cryptotips.DataBase.favorite;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;

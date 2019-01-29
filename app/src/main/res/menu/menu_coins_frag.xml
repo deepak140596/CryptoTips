@@ -9,7 +9,7 @@
         app:actionViewClass="android.widget.SearchView"
         app:showAsAction="always"
         android:title="Search"
-        android:icon="@mipmap/ic_search_icon_white"/>
+        android:icon="@mipmap/ic_search_white"/>
     <item
         android:id="@+id/action_sort"
         android:orderInCategory="2"

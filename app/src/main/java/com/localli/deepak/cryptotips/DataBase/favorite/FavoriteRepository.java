@@ -1,4 +1,4 @@
-package com.localli.deepak.cryptotips.DataBase;
+package com.localli.deepak.cryptotips.DataBase.favorite;
 
 import android.app.Application;
 import android.os.AsyncTask;
@@ -13,13 +13,13 @@ public class FavoriteRepository {
     private FavoriteDAO favoriteDAO;
     private List<FavoriteEntity> allFavorites;
 
-    FavoriteRepository(Application application){
+    public FavoriteRepository(Application application){
         FavoriteDatabase db = FavoriteDatabase.getDatabase(application);
         favoriteDAO = db.favoriteDAO();
         allFavorites = favoriteDAO.getAllFav();
     }
 
-    List<FavoriteEntity> getAllFavorites(){
+    public List<FavoriteEntity> getAllFavorites(){
         return allFavorites;
     }
 

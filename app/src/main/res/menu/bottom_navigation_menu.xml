@@ -7,12 +7,22 @@
         android:title="Track" />
 
     <item
+        android:id="@+id/bottom_navigation_portfolio"
+        android:icon="@mipmap/ic_portfolio"
+        android:title="Portfolio" />
+
+    <item
         android:id="@+id/bottom_navigation_news"
         android:icon="@mipmap/ic_news"
         android:title="News" />
 
     <item
-        android:id="@+id/bottom_navigation_notifications"
+        android:id="@+id/bottom_navigation_alert"
+        android:icon="@mipmap/ic_bell"
+        android:title="Alerts" />
+
+    <item
+        android:id="@+id/bottom_navigation_about"
         android:icon="@mipmap/ic_account"
         android:title="About" />
 

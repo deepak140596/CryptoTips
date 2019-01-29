@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -12,14 +13,17 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.localli.deepak.cryptotips.R;
+import com.localli.deepak.cryptotips.alerts.AlertFragment;
 import com.localli.deepak.cryptotips.coinlists.ListFragment;
 import com.localli.deepak.cryptotips.news.NewsListFragment;
+import com.localli.deepak.cryptotips.portfolio.PortfolioFragment;
 
 public class NavigationActivity extends AppCompatActivity {
 
 
     FragmentManager fragmentManager;
     BottomNavigationView bottomNavigation;
+    public static CoordinatorLayout coordinatorLayout;
 
     boolean doubleBackToExit = false;
     @Override
@@ -29,6 +33,7 @@ public class NavigationActivity extends AppCompatActivity {
 
         bottomNavigation= (BottomNavigationView) findViewById(R.id.bottom_navigation_bar);
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        coordinatorLayout = findViewById(R.id.navigation_coordinator_layout);
 
         startCoinListFragment();
 
@@ -48,11 +53,18 @@ public class NavigationActivity extends AppCompatActivity {
                     fragment = new ListFragment();
                     break;
 
+                case R.id.bottom_navigation_portfolio:
+                    fragment = new PortfolioFragment();
+                    break;
                 case R.id.bottom_navigation_news:
                     fragment = new NewsListFragment();
                     break;
 
-                case R.id.bottom_navigation_notifications:
+                case R.id.bottom_navigation_alert:
+                    fragment = new AlertFragment();
+                    break;
+
+                case R.id.bottom_navigation_about:
                     fragment = new AboutUsFragment();
                     break;
 
@@ -94,6 +106,8 @@ public class NavigationActivity extends AppCompatActivity {
         if(doubleBackToExit){
             super.onBackPressed();
         }else{
+            if(bottomNavigation.getVisibility()==View.GONE)
+                bottomNavigation.setVisibility(View.VISIBLE);
             this.doubleBackToExit = true;
             Toast.makeText(this, "Press BACK again to exit", Toast.LENGTH_SHORT).show();
 

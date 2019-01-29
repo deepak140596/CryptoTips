@@ -1,0 +1,36 @@
+<RelativeLayout
+    android:id="@+id/frag_portfolio_analyze_rl"
+    android:layout_width="match_parent"
+    android:layout_height="?actionBarSize"
+    android:padding="8dp"
+    android:background="@color/colorPrimary"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:textColor="@color/color_white"
+        android:layout_marginLeft="8dp"
+        android:text="Portfolio"
+        style="@style/Base.TextAppearance.AppCompat.Widget.ActionBar.Title"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:textColor="@color/color_white"
+        android:layout_toLeftOf="@id/frag_portfolio_total_worth_tv"
+        android:text="Total Worth: "/>
+
+    <TextView
+        android:id="@+id/frag_portfolio_total_worth_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/color_white"
+        android:text="0.0"
+        android:layout_alignParentEnd="true"/>
+</RelativeLayout>

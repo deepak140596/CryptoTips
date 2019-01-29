@@ -51,5 +51,7 @@
     <string name="github_id">https://github.com/deepak140596</string>
     <string name="linkedin_id">https://www.linkedin.com/in/deepak-prasad-4887a5165/</string>
     <string name="playstore_id">https://play.google.com/store/apps/developer?id=Localli+Delivers</string>
+    <string name="string_rise_above">Rises above</string>
+    <string name="string_drops_below">Drops Below</string>
 
 </resources>

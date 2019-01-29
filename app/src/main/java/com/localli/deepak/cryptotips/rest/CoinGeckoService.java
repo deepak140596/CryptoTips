@@ -11,4 +11,5 @@ public class CoinGeckoService {
     public static String SAMPLE_TEST_URL = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=500&page=1";
     public static String MARKET_DATA_URL = "https://api.coingecko.com/api/v3/coins/%s/market_chart?vs_currency=%s&days=%s";
     public static String GET_SIMPLE_PRICE = "https://api.coingecko.com/api/v3/simple/price?ids=%s&vs_currencies=%s";
+    public static String GET_SUPPORTED_CURRENCIES = "https://api.coingecko.com/api/v3/coins/list";
 }

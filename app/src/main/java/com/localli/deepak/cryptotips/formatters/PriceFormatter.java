@@ -15,6 +15,9 @@ public class PriceFormatter {
     static String PRICE_FORMAT_GREATER_THAN_ONE = "%s %,.3f";
     static String PRICE_FORMAT_LESS_THAN_ONE = "%s %.5f";
 
+    static String PRICE_FORMAT_GREATER_THAN_ONE_WITHOUT_SYMBOL = "%.3f";
+    static String PRICE_FORMAT_LESS_THAN_ONE_WITHOUT_SYMBOL = "%.5f";
+
     public static void setPriceFormatTextView(Context context, TextView textView, Double price){
         String symbol = CurrencySymbolUtils.getCurrencySymbol(context,SharedPrefSimpleDB.getPreferredCurrency(context));
 
@@ -29,6 +32,26 @@ public class PriceFormatter {
     public static String priceFormatter(Context context, Double price){
         String symbol = CurrencySymbolUtils.getCurrencySymbol(context,SharedPrefSimpleDB.getPreferredCurrency(context));
 
+        if(Math.abs(price)>1){
+            return String.format(PRICE_FORMAT_GREATER_THAN_ONE,symbol, price);
+        }
+        else{
+            return String.format(PRICE_FORMAT_LESS_THAN_ONE,symbol,price );
+        }
+    }
+
+    public static String priceFormatterWithoutSymbol(Double price){
+        if(Math.abs(price)>1){
+            return String.format(PRICE_FORMAT_GREATER_THAN_ONE_WITHOUT_SYMBOL, price);
+        }
+        else{
+            return String.format(PRICE_FORMAT_LESS_THAN_ONE_WITHOUT_SYMBOL,price );
+        }
+    }
+
+    public static String priceFormatterWithSymbol(Context context,Double price, String vsCurrency){
+
+        String symbol = CurrencySymbolUtils.getCurrencySymbol(context,vsCurrency);
         if(Math.abs(price)>1){
             return String.format(PRICE_FORMAT_GREATER_THAN_ONE,symbol, price);
         }
