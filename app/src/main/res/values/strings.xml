@@ -53,5 +53,9 @@
     <string name="playstore_id">https://play.google.com/store/apps/developer?id=Localli+Delivers</string>
     <string name="string_rise_above">Rises above</string>
     <string name="string_drops_below">Drops Below</string>
+    <string name="channel_name">crypto_track_notification_channel</string>
+    <string name="channel_description">Channel for all notifications from the app, corresponding to Android 8</string>
+    <string name="coin_id">coin_id</string>
+    <string name="vs_currency">vs_currency</string>
 
 </resources>

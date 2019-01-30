@@ -28,6 +28,10 @@
         <activity android:name=".currencydetails.CurrencyDetailsTabsActivity" />
         <activity android:name=".portfolio.AddPortfolio" />
         <activity android:name=".alerts.AddAlertActivity"></activity>
+        
+        <service android:name=".alerts.AlertBackgroundService" android:icon="@drawable/ninja_cat" android:label="@string/app_name"
+            android:enabled="true"/>
     </application>
+    
 
 </manifest>

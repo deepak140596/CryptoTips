@@ -29,6 +29,7 @@ import com.android.volley.VolleyError;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.localli.deepak.cryptotips.DataBase.SharedPrefSimpleDB;
+import com.localli.deepak.cryptotips.DataBase.alerts.AlertEntity;
 import com.localli.deepak.cryptotips.DataBase.portfolio.PortfolioEntity;
 import com.localli.deepak.cryptotips.NavigationActivity;
 import com.localli.deepak.cryptotips.R;
@@ -128,6 +129,8 @@ public class PortfolioFragment extends Fragment implements RecyclerItemTouchHelp
         portfolioViewModel.getPortfolio().observe(activity, new Observer<List<PortfolioEntity>>() {
             @Override
             public void onChanged(@Nullable List<PortfolioEntity> portfolioEntities) {
+
+                swipeRefreshLayout.setRefreshing(true);
                 // update list
                 list = portfolioEntities;
 
@@ -136,6 +139,10 @@ public class PortfolioFragment extends Fragment implements RecyclerItemTouchHelp
                     Log.i(TAG," NAME: "+entity.getName());
                     savedPortfolioCoins = savedPortfolioCoins.concat(",").concat(entity.getId());
                 }
+
+                if(list.isEmpty())
+                    if(swipeRefreshLayout.isRefreshing())
+                        swipeRefreshLayout.setRefreshing(false);
 
                 // get live prices for the saved portfolio
                 setUpPortfolio(savedPortfolioCoins);
@@ -179,6 +186,11 @@ public class PortfolioFragment extends Fragment implements RecyclerItemTouchHelp
             @Override
             public void notifyError(String requestType, VolleyError error) {
                 Log.e(TAG,"Error: "+error);
+            }
+
+            @Override
+            public void notifySuccess(String requestType, String response, AlertEntity alertEntity) {
+
             }
         };
     }
@@ -285,5 +297,8 @@ public class PortfolioFragment extends Fragment implements RecyclerItemTouchHelp
         }
 
         PriceFormatter.setPriceFormatTextView(activity,totalWorthTv,totalWorth);
+
+        if(swipeRefreshLayout.isRefreshing())
+            swipeRefreshLayout.setRefreshing(false);
     }
 }

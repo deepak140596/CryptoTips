@@ -101,7 +101,10 @@ public class GraphFragment extends Fragment {
         this.context = getContext();
         this.activity = (AppCompatActivity)getActivity();
 
-        coinItem =(CoinItem) activity.getIntent().getSerializableExtra(CURRENCY_ID);
+        //coinItem =(CoinItem) activity.getIntent().getSerializableExtra(CURRENCY_ID);
+
+        coinItem = (CoinItem)this.getArguments().getSerializable(CURRENCY_ID);
+        //Log.i(TAG,"COIN_ITEM: "+coinItem.getId());
         TO_SYMBOL = SharedPrefSimpleDB.getPreferredCurrency(context);
 
         return inflater.inflate(R.layout.fragment_graph,container,false);

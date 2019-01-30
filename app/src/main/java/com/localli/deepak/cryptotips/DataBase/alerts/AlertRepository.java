@@ -14,15 +14,21 @@ public class AlertRepository {
 
     private AlertDAO alertDAO;
     private LiveData<List<AlertEntity>> alertsList;
+    private LiveData<List<AlertEntity>> activeAlertsList;
 
     public AlertRepository(Application application){
         AlertDatabase db = AlertDatabase.getDatabase(application);
         alertDAO = db.alertDAO();
         alertsList = alertDAO.getAlerts();
+        activeAlertsList = alertDAO.getActiveAlerts();
     }
 
     public LiveData<List<AlertEntity>> getAlertsList(){
         return alertsList;
+    }
+
+    public LiveData<List<AlertEntity>> getActiveAlertsList(){
+        return activeAlertsList;
     }
 
     public void insert(AlertEntity alertEntity){

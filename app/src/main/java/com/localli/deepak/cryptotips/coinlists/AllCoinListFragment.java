@@ -108,7 +108,8 @@ public class AllCoinListFragment extends Fragment implements SwipeRefreshLayout.
 
     private void prepareURL(){
         String URL = String.format(CoinGeckoService.ALL_COINS_BY_PAGE_URL,
-                SharedPrefSimpleDB.getPreferredCurrency(context).toLowerCase(),"500",1);
+                SharedPrefSimpleDB.getPreferredCurrency(context).toLowerCase(),
+                SharedPrefSimpleDB.getNoOfCoins(context),1);
         fetchCoinList(URL);
     }
 
@@ -279,7 +280,7 @@ public class AllCoinListFragment extends Fragment implements SwipeRefreshLayout.
 
         List<CoinItem> filteredValues = new ArrayList<>(coinList);
         for(CoinItem coinItem : coinList){
-            String searchString = coinItem.getName()+ " " +coinItem.getId();
+            String searchString = coinItem.getName()+ " " +coinItem.getId()+" "+coinItem.getSymbol();
 
             if(!searchString.toLowerCase().contains(newText.toLowerCase()))
                 filteredValues.remove(coinItem);

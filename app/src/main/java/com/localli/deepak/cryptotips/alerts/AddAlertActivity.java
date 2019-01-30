@@ -130,13 +130,17 @@ public class AddAlertActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            public void onTextChanged(CharSequence cs, int start, int before, int count) {
 
-                if(s.toString().trim().isEmpty()) {
+                String s = cs.toString();
+                if(s.startsWith("."))
+                    s="0".concat(s);
+
+                if(s.trim().isEmpty()) {
                     saveFab.setVisibility(View.GONE);
                     return;
                 }
-                if(Double.parseDouble(s.toString()) <=0 ) {
+                if(Double.parseDouble(s) <=0 ) {
                     saveFab.setVisibility(View.GONE);
                     return;
                 }
@@ -169,12 +173,17 @@ public class AddAlertActivity extends AppCompatActivity {
 
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.toString().trim().isEmpty()) {
+            public void onTextChanged(CharSequence cs, int start, int before, int count) {
+
+                String s = cs.toString();
+                if(s.startsWith("."))
+                    s="0".concat(s);
+
+                if(s.trim().isEmpty()) {
                     saveFab.setVisibility(View.GONE);
                     return;
                 }
-                if(Double.parseDouble(s.toString()) <=0 ) {
+                if(Double.parseDouble(s) <=0 ) {
                     saveFab.setVisibility(View.GONE);
                     return;
                 }
@@ -242,6 +251,11 @@ public class AddAlertActivity extends AppCompatActivity {
             public void notifyError(String requestType, VolleyError error) {
                 Log.e(TAG,"Error: "+error);
             }
+
+            @Override
+            public void notifySuccess(String requestType, String response, AlertEntity alertEntity) {
+
+            }
         };
     }
 
@@ -286,6 +300,7 @@ public class AddAlertActivity extends AppCompatActivity {
                 floatingSearchView.swapSuggestions(filterResults(supportedCurrencyList,currentQuery));
                 floatingSearchView.hideProgress();
 
+
             }
         });
     }
@@ -321,6 +336,11 @@ public class AddAlertActivity extends AppCompatActivity {
             @Override
             public void notifyError(String requestType, VolleyError error) {
                 Log.e(TAG,"Error: "+error);
+            }
+
+            @Override
+            public void notifySuccess(String requestType, String response, AlertEntity alertEntity) {
+
             }
         };
     }

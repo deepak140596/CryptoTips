@@ -129,4 +129,19 @@ public class SharedPrefSimpleDB {
         editor.apply();
         editor.commit();
     }
+
+
+    public static int getNoOfCoins(Context context){
+        SharedPreferences sharedPreferences = context.getSharedPreferences("no_of_coins",Context.MODE_PRIVATE);
+        int noOfCoins = sharedPreferences.getInt("saved_no_of_coins",100);
+        return noOfCoins;
+    }
+
+    public static void saveNoOfCoins(Context context,int noOfCoins){
+        SharedPreferences sharedPreferences = context.getSharedPreferences("no_of_coins",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear().putInt("saved_no_of_coins",noOfCoins);
+        editor.apply();
+        editor.commit();
+    }
 }

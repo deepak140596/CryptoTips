@@ -54,7 +54,7 @@ public class MarketDetailsFragment extends Fragment{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         this.activity = (AppCompatActivity)getActivity();
         this.context = getContext();
-        coinItem =(CoinItem) activity.getIntent().getSerializableExtra(CURRENCY_ID);
+        coinItem = (CoinItem)this.getArguments().getSerializable(CURRENCY_ID);
         return inflater.inflate(R.layout.fragment_market_details,container,false);
     }
 

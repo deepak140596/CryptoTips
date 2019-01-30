@@ -291,7 +291,7 @@ public class FavoriteListFragment extends Fragment implements SwipeRefreshLayout
 
         List<CoinItem> filteredValues = new ArrayList<>(coinList);
         for(CoinItem coinItem : coinList){
-            String searchString = coinItem.getName()+ " " +coinItem.getId();
+            String searchString = coinItem.getName()+ " " +coinItem.getId()+" "+coinItem.getSymbol();
 
             if(!searchString.toLowerCase().contains(newText.toLowerCase()))
                 filteredValues.remove(coinItem);

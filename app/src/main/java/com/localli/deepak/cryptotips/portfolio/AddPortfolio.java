@@ -20,6 +20,7 @@ import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.localli.deepak.cryptotips.DataBase.SharedPrefSimpleDB;
+import com.localli.deepak.cryptotips.DataBase.alerts.AlertEntity;
 import com.localli.deepak.cryptotips.R;
 import com.localli.deepak.cryptotips.formatters.PriceFormatter;
 import com.localli.deepak.cryptotips.models.CoinItem;
@@ -97,14 +98,18 @@ public class AddPortfolio extends AppCompatActivity {
 
             @SuppressLint("RestrictedApi")
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            public void onTextChanged(CharSequence cs, int start, int before, int count) {
+                String s = cs.toString();
+                if(s.startsWith("."))
+                    s="0".concat(s);
+
                 if(s.length() == 0 || currentPrice==0) {
                     doneFab.setVisibility(View.GONE);
                     totalValueTv.setText("0");
                     amount=0;
                 }
                 else{
-                    amount = Double.parseDouble(s.toString().trim());
+                    amount = Double.parseDouble(s.trim());
                     double totalValue = currentPrice*amount;
 
                     PriceFormatter.setPriceFormatTextView(AddPortfolio.this,totalValueTv,totalValue);
@@ -155,6 +160,11 @@ public class AddPortfolio extends AppCompatActivity {
             public void notifyError(String requestType, VolleyError error) {
                 Log.e(TAG,"Error: "+error);
             }
+
+            @Override
+            public void notifySuccess(String requestType, String response, AlertEntity alertEntity) {
+
+            }
         };
     }
 
@@ -177,6 +187,11 @@ public class AddPortfolio extends AppCompatActivity {
             @Override
             public void notifyError(String requestType, VolleyError error) {
                 Log.e(TAG,"Error: "+error);
+            }
+
+            @Override
+            public void notifySuccess(String requestType, String response, AlertEntity alertEntity) {
+
             }
         };
     }

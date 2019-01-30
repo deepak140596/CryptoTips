@@ -1,6 +1,7 @@
 package com.localli.deepak.cryptotips;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -8,10 +9,12 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -25,9 +28,10 @@ import com.localli.deepak.cryptotips.DataBase.SharedPrefSimpleDB;
 public class AboutUsFragment extends Fragment {
 
     LinearLayout githubLL, linkedinLL, emailLL, playstoreLL;
-    LinearLayout preferredCurrencyLL, rateUsLL;
+    LinearLayout preferredCurrencyLL, rateUsLL, noOfCoinsLL;
 
-    TextView selectedPrefCurrencyTv, privacyPolicyTv, sendFeedbackTv;
+    TextView selectedPrefCurrencyTv, privacyPolicyTv, sendFeedbackTv,
+        selectedNoOfCoinsTv;
 
 
     // Insert your Application Package Name
@@ -61,10 +65,13 @@ public class AboutUsFragment extends Fragment {
         emailLL = view.findViewById(R.id.profile_email_ll);
         playstoreLL = view.findViewById(R.id.profile_playstore_ll);
         preferredCurrencyLL = view.findViewById(R.id.profile_settings_currency_ll);
+        noOfCoinsLL = view.findViewById(R.id.profile_settings_no_of_coins_ll);
         rateUsLL = view.findViewById(R.id.profile_rate_us_ll);
         selectedPrefCurrencyTv = view.findViewById(R.id.profile_selected_currency_tv);
         privacyPolicyTv = view.findViewById(R.id.profile_privacy_policy_tv);
         sendFeedbackTv = view.findViewById(R.id.profile_send_feedback_tv);
+        selectedNoOfCoinsTv = view.findViewById(R.id.profile_selected_no_of_coins_tv);
+
 
 
         githubLL.setOnClickListener(new View.OnClickListener() {
@@ -125,7 +132,15 @@ public class AboutUsFragment extends Fragment {
             }
         });
 
+        noOfCoinsLL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setUpNoOfCoins();
+            }
+        });
+
         setupPreferredCurrencyTextView();
+        setupSelectedNoOfCoinsTextView();
 
     }
 
@@ -173,6 +188,41 @@ public class AboutUsFragment extends Fragment {
     private void setupPreferredCurrencyTextView(){
         String prefCurrency = SharedPrefSimpleDB.getPreferredCurrency(context);
         selectedPrefCurrencyTv.setText(prefCurrency.toUpperCase());
+    }
+
+    private void setupSelectedNoOfCoinsTextView(){
+        int noOfCoins = SharedPrefSimpleDB.getNoOfCoins(context);
+        selectedNoOfCoinsTv.setText(noOfCoins+"");
+    }
+
+    private void setUpNoOfCoins(){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        LayoutInflater layoutInflater = activity.getLayoutInflater();
+        View customView = layoutInflater.inflate(R.layout.custom_no_of_coins_input,null);
+
+        builder.setView(customView);
+        final EditText noOfCoinsEt = customView.findViewById(R.id.custom_no_of_coins_et);
+        noOfCoinsEt.setText(SharedPrefSimpleDB.getNoOfCoins(activity)+"");
+
+        builder.setTitle("Currency list length");
+
+        builder.setPositiveButton("Set", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                int noOfCoins = Integer.parseInt(noOfCoinsEt.getText().toString());
+                selectedNoOfCoinsTv.setText(noOfCoins+"");
+                SharedPrefSimpleDB.saveNoOfCoins(activity,noOfCoins);
+            }
+        }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        builder.create();
+        builder.show();
     }
 
 }

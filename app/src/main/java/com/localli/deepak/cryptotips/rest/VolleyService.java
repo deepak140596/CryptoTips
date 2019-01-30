@@ -9,6 +9,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.localli.deepak.cryptotips.DataBase.alerts.AlertEntity;
 import com.localli.deepak.cryptotips.models.CoinItem;
 import com.localli.deepak.cryptotips.utils.VolleyResult;
 
@@ -38,9 +39,32 @@ public class VolleyService {
             StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
-                    Log.i(TAG, response);
+                    //Log.i(TAG, response);
                     if(volleyResultCallback != null)
                         volleyResultCallback.notifySuccess(requestType,response);
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.e(TAG, error.toString());
+                    if(volleyResultCallback != null)
+                        volleyResultCallback.notifyError(requestType,error);
+                }
+            });
+            requestQueue.add(stringRequest);
+        }catch (Exception e){}
+    }
+
+    public void getSimplePriceDataVolley(final String requestType, String URL, final AlertEntity alertEntity){
+        try{
+            RequestQueue requestQueue = Volley.newRequestQueue(context);
+
+            StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    //Log.i(TAG, response);
+                    if(volleyResultCallback != null)
+                        volleyResultCallback.notifySuccess(requestType,response,alertEntity);
                 }
             }, new Response.ErrorListener() {
                 @Override

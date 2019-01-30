@@ -16,15 +16,21 @@ import java.util.List;
 public class AlertViewModel extends AndroidViewModel {
     private AlertRepository alertRepository;
     private LiveData<List<AlertEntity>> alertsList;
+    private LiveData<List<AlertEntity>> activeAlertsList;
 
     public AlertViewModel(Application application){
         super(application);
         alertRepository = new AlertRepository(application);
         alertsList = alertRepository.getAlertsList();
+        activeAlertsList = alertRepository.getActiveAlertsList();
     }
 
     public LiveData<List<AlertEntity>> getAlertsList(){
         return alertsList;
+    }
+
+    public LiveData<List<AlertEntity>> getActiveAlertsList(){
+        return activeAlertsList;
     }
 
     public void insert(AlertEntity alertEntity){
