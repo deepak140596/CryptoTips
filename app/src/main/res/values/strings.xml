@@ -36,7 +36,7 @@
     <string name="string_news_body_sample">Get Trading Recommendations and Read Analysis on Hacked.com for just $39 per month. It’s official. Tokyo-based cryptocurrency exchange Coincheck was hacked in what is believed to be the largest exchange theft ever carried out. This story is continually develo…</string>
 
     <string name="string_onesignal_appid">8a174476-dc00-4b16-b9da-405de2902704</string>
-    <string name="privacy_policy_url"><![CDATA[https://firebasestorage.googleapis.com/v0/b/my-crypto-tips.appspot.com/o/PrivacyPolicy%2Fprivacy_policy.html?alt=media&token=4e2a7a82-4b91-4b79-8bd6-6544341ff03c]]></string>
+    <string name="privacy_policy_url"><![CDATA[https://firebasestorage.googleapis.com/v0/b/my-crypto-tips.appspot.com/o/PrivacyPolicy%2FlocalliPrivacyPolicy.html?alt=media&token=f41eca52-dba2-4f2f-93c0-04b59ffb7b1d]]></string>
     <string name="title_activity_navigation">NavigationActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>

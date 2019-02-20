@@ -22,6 +22,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -65,6 +66,7 @@ public class PortfolioFragment extends Fragment implements RecyclerItemTouchHelp
     SwipeRefreshLayout swipeRefreshLayout;
     FloatingActionButton addFab;
     TextView totalWorthTv;
+    LinearLayout emptyState;
 
     PortfolioItemAdapter adapter;
     List<PortfolioEntity> list = new ArrayList<>();
@@ -102,6 +104,7 @@ public class PortfolioFragment extends Fragment implements RecyclerItemTouchHelp
         // get swipe refresh layout
         swipeRefreshLayout = view.findViewById(R.id.fragment_portfolio_swipe_layout);
         totalWorthTv = view.findViewById(R.id.frag_portfolio_total_worth_tv);
+        emptyState = view.findViewById(R.id.frag_portfolio_empty_state_ll);
 
         // set recycler view
         recyclerView = view.findViewById(R.id.fragment_portfolio_recycler_view);
@@ -140,9 +143,14 @@ public class PortfolioFragment extends Fragment implements RecyclerItemTouchHelp
                     savedPortfolioCoins = savedPortfolioCoins.concat(",").concat(entity.getId());
                 }
 
-                if(list.isEmpty())
-                    if(swipeRefreshLayout.isRefreshing())
+                if(list.isEmpty()) {
+                    if (swipeRefreshLayout.isRefreshing())
                         swipeRefreshLayout.setRefreshing(false);
+
+                    emptyState.setVisibility(View.VISIBLE);
+                }else
+                    emptyState.setVisibility(View.GONE);
+
 
                 // get live prices for the saved portfolio
                 setUpPortfolio(savedPortfolioCoins);

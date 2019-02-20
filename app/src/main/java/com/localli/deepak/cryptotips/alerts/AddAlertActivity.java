@@ -2,6 +2,7 @@ package com.localli.deepak.cryptotips.alerts;
 
 import android.annotation.SuppressLint;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -66,14 +67,16 @@ public class AddAlertActivity extends AppCompatActivity {
 
     boolean isTriggeredByPrice = false;
 
-
     double currentPrice = 0.0;
-    long id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_alert);
+
+        CoinItem receivedCoinItem = (CoinItem)getIntent().getSerializableExtra(getString(R.string.coin_id));
+
+
 
         // initialise Supported currencies volley callback
         initGetSupportedCurrenciesVolleyCallback();
@@ -87,6 +90,9 @@ public class AddAlertActivity extends AppCompatActivity {
         volleyService.getDataVolley("GET", CoinGeckoService.GET_SUPPORTED_CURRENCIES);
 
         initialiseViews();
+        if(receivedCoinItem!=null){
+            setCurrencyDetails(receivedCoinItem);
+        }
 
     }
 
@@ -233,6 +239,7 @@ public class AddAlertActivity extends AppCompatActivity {
 
     }
 
+
     void initGetSupportedCurrenciesVolleyCallback(){
         volleyResultCallback = new VolleyResult() {
             @Override
@@ -317,6 +324,17 @@ public class AddAlertActivity extends AppCompatActivity {
         return filteredValues;
     }
 
+    void getCurrencyDetails(SupportedCurrency currency){
+
+        initCurrencyDetailVolleyCallabck();
+
+        String GET_COINS_BY_ID_URL = String.format(CoinGeckoService.COINS_BY_ID_URL,
+                SharedPrefSimpleDB.getPreferredCurrency(this),currency.getId());
+
+        volleyService = new VolleyService(currencyDetailResultCallback,this);
+        volleyService.getDataVolley("GET", GET_COINS_BY_ID_URL);
+    }
+
     void initCurrencyDetailVolleyCallabck(){
         currencyDetailResultCallback = new VolleyResult() {
             @Override
@@ -344,18 +362,6 @@ public class AddAlertActivity extends AppCompatActivity {
             }
         };
     }
-
-    void getCurrencyDetails(SupportedCurrency currency){
-
-        initCurrencyDetailVolleyCallabck();
-
-        String GET_COINS_BY_ID_URL = String.format(CoinGeckoService.COINS_BY_ID_URL,
-                SharedPrefSimpleDB.getPreferredCurrency(this),currency.getId());
-
-        volleyService = new VolleyService(currencyDetailResultCallback,this);
-        volleyService.getDataVolley("GET", GET_COINS_BY_ID_URL);
-    }
-
 
     @SuppressLint("RestrictedApi")
     void setCurrencyDetails(CoinItem coinItem){

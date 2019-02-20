@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
@@ -51,9 +52,9 @@ public class AlertItemAdapter  extends RecyclerView.Adapter<AlertItemAdapter.Vie
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull final ViewHolder viewHolder,final int i) {
         final AlertEntity item = alertList.get(i);
-        Log.i(TAG,"NAME: "+item.getName());
+        Log.i(TAG,"NAME: "+item.toString());
 
         String fullName = item.getName()+" ("+ item.getSymbol().toUpperCase()+") ";
         viewHolder.coinNameTv.setText(fullName);
@@ -79,15 +80,31 @@ public class AlertItemAdapter  extends RecyclerView.Adapter<AlertItemAdapter.Vie
         }
 
         int isTriggered = item.getIsTriggered();
-        if(isTriggered==1)
-            viewHolder.triggeredSwitch.setChecked(false);
-        else
-            viewHolder.triggeredSwitch.setChecked(true);
+        if(isTriggered==1) {
+            viewHolder.switchOffIv.setVisibility(View.VISIBLE);
+            viewHolder.switchOnIv.setVisibility(View.GONE);
+        }
+        else {
+            viewHolder.switchOffIv.setVisibility(View.GONE);
+            viewHolder.switchOnIv.setVisibility(View.VISIBLE);
+        }
 
-        viewHolder.triggeredSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+        viewHolder.switchOnIv.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                updateAlert(item,isChecked?0:1);
+            public void onClick(View v) {
+                viewHolder.switchOffIv.setVisibility(View.VISIBLE);
+                viewHolder.switchOnIv.setVisibility(View.GONE);
+                updateAlert(alertList.get(i),1);
+            }
+        });
+
+        viewHolder.switchOffIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewHolder.switchOffIv.setVisibility(View.GONE);
+                viewHolder.switchOnIv.setVisibility(View.VISIBLE);
+                updateAlert(alertList.get(i),0);
             }
         });
     }
@@ -102,7 +119,7 @@ public class AlertItemAdapter  extends RecyclerView.Adapter<AlertItemAdapter.Vie
         public TextView coinNameTv, alertTypeTv, triggerPriceTv;
         public CircleImageView coinImageView,alertTypeIv;
         public RelativeLayout backgroundRl, foregroundRl;
-        public Switch triggeredSwitch;
+        public ImageView switchOnIv,switchOffIv;
 
         public ViewHolder(@NonNull View view) {
             super(view);
@@ -114,7 +131,8 @@ public class AlertItemAdapter  extends RecyclerView.Adapter<AlertItemAdapter.Vie
             alertTypeIv = view.findViewById(R.id.item_alert_alert_type_iv);
             backgroundRl = view.findViewById(R.id.item_alert_background);
             foregroundRl = view.findViewById(R.id.item_alert_foreground);
-            triggeredSwitch = view.findViewById(R.id.item_alert_switch);
+            switchOnIv = view.findViewById(R.id.item_alert_on_switch_iv);
+            switchOffIv = view.findViewById(R.id.item_alert_off_switch_iv);
         }
     }
 
@@ -131,10 +149,15 @@ public class AlertItemAdapter  extends RecyclerView.Adapter<AlertItemAdapter.Vie
         notifyItemInserted(position);
     }
 
+    public void setItems(List<AlertEntity> alertList) {
+        this.alertList = alertList;
+    }
+
 
     private void updateAlert(AlertEntity alertEntity, int isTriggered){
         alertEntity.setIsTriggered(isTriggered);
         AlertViewModel alertViewModel = ViewModelProviders.of(context).get(AlertViewModel.class);
         alertViewModel.insert(alertEntity);
+        //notifyDataSetChanged();
     }
 }

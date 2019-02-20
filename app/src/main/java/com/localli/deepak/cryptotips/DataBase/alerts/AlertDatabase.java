@@ -28,7 +28,8 @@ public abstract class AlertDatabase extends RoomDatabase{
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             AlertDatabase.class,"alert_database")
                             .fallbackToDestructiveMigration()
-                            .addCallback(roomCallback)
+                            //.addCallback(roomCallback)
+                            .allowMainThreadQueries()
                             .build();
                 }
             }

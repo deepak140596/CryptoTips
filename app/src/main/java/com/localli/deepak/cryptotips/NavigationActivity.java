@@ -2,7 +2,9 @@ package com.localli.deepak.cryptotips;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -14,6 +16,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.localli.deepak.cryptotips.R;
@@ -29,6 +33,8 @@ public class NavigationActivity extends AppCompatActivity {
     FragmentManager fragmentManager;
     BottomNavigationView bottomNavigation;
     public static CoordinatorLayout coordinatorLayout;
+    LinearLayout noInternetState;
+    Button retryBtn;
 
     boolean doubleBackToExit = false;
     @Override
@@ -36,17 +42,42 @@ public class NavigationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
 
+
+
         // as soon as the app starts, create a notification channel
         createNotificationChannel();
+        // OneSignal Initialization
+        /*OneSignal.startInit(this)
+                .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
+                .unsubscribeWhenNotificationsAreDisabled(true)
+                .init();*/
+        noInternetState = findViewById(R.id.navigation_no_internet_state_ll);
+        retryBtn = findViewById(R.id.nav_retry_ll);
+        retryBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startUI();
+            }
+        });
+        startUI();
 
-        bottomNavigation= (BottomNavigationView) findViewById(R.id.bottom_navigation_bar);
-        bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        coordinatorLayout = findViewById(R.id.navigation_coordinator_layout);
 
-        startBackgroundAlert();
-        startCoinListFragment();
+    }
 
+    private void startUI(){
+        if(isNetworkConnected()) {
 
+            noInternetState.setVisibility(View.GONE);
+            bottomNavigation = (BottomNavigationView) findViewById(R.id.bottom_navigation_bar);
+            bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+            coordinatorLayout = findViewById(R.id.navigation_coordinator_layout);
+
+            startBackgroundAlert();
+            startCoinListFragment();
+        }else {
+            noInternetState.setVisibility(View.VISIBLE);
+            return;
+        }
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -151,5 +182,11 @@ public class NavigationActivity extends AppCompatActivity {
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
         }
+    }
+
+
+    private boolean isNetworkConnected(){
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        return cm.getActiveNetworkInfo() != null;
     }
 }

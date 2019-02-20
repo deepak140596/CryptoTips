@@ -20,30 +20,41 @@ public class PercentageFormatter {
     //static String PREFIX = "24hr: ";
 
 
-    public static void setPercentChangeTextView(Context context, TextView textView, Double pctChange){
+    public static void setPercentChangeTextView(Context context, TextView textView, Double pctChange) {
 
-        if(pctChange >= 0){
-            String text = String.format(POS_PCT_FORMAT,pctChange);
+        if (pctChange >= 0) {
+            String text = String.format(POS_PCT_FORMAT, pctChange);
             textView.setText(text.concat("%"));
             textView.setTextColor(context.getResources().getColor(colorGreen));
-        }else{
-            String text = String.format(NEG_PCT_FORMAT,pctChange);
+        } else {
+            String text = String.format(NEG_PCT_FORMAT, pctChange);
             textView.setText(text.concat("%"));
             textView.setTextColor(context.getResources().getColor(colorRed));
         }
     }
 
-    public static void setPriceAndPercentChangeTextView(Context context, TextView textView, Double pctChange, Double priceChange){
-        if(pctChange >= 0){
-            String text = String.format(POS_PCT_FORMAT,pctChange);
-            textView.setText(text.concat("%").concat(" (+"+PriceFormatter.priceFormatter(context,priceChange)+")"));
+    public static void setPriceAndPercentChangeTextView(Context context, TextView textView, Double pctChange, Double priceChange) {
+        if (pctChange >= 0) {
+            String text = String.format(POS_PCT_FORMAT, pctChange);
+            textView.setText(text.concat("%").concat(" (+" + PriceFormatter.priceFormatter(context, priceChange) + ")"));
             textView.setTextColor(context.getResources().getColor(colorGreen));
-        }else{
-            String text = String.format(NEG_PCT_FORMAT,pctChange);
-            textView.setText(text.concat("%").concat(" ("+PriceFormatter.priceFormatter(context,priceChange)+")"));
+        } else {
+            String text = String.format(NEG_PCT_FORMAT, pctChange);
+            textView.setText(text.concat("%").concat(" (" + PriceFormatter.priceFormatter(context, priceChange) + ")"));
             textView.setTextColor(context.getResources().getColor(colorRed));
         }
     }
 
-
+    public static void setPriceAndPercentChangeTextViewTwoLines(Context context, TextView textView,
+                                                                Double pctChange, Double priceChange) {
+        if (pctChange >= 0) {
+            String text = String.format(POS_PCT_FORMAT, pctChange);
+            textView.setText(text.concat("%").concat("\n (+" + PriceFormatter.priceFormatter(context, priceChange) + ")"));
+            textView.setTextColor(context.getResources().getColor(colorGreen));
+        } else {
+            String text = String.format(NEG_PCT_FORMAT, pctChange);
+            textView.setText(text.concat("%").concat("\n (" + PriceFormatter.priceFormatter(context, priceChange) + ")"));
+            textView.setTextColor(context.getResources().getColor(colorRed));
+        }
+    }
 }

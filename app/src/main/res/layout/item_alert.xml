@@ -86,11 +86,24 @@
                         android:text="Not Triggered"/>
                 </LinearLayout>
 
-                <Switch
-                    android:id="@+id/item_alert_switch"
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"/>
+                    android:layout_gravity="center_vertical">
+
+                    <ImageView
+                        android:id="@+id/item_alert_off_switch_iv"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@mipmap/ic_switch_off"/>
+                    <ImageView
+                        android:id="@+id/item_alert_on_switch_iv"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@mipmap/ic_switch_on"/>
+
+                </RelativeLayout>
+
 
             </LinearLayout>
 

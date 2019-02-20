@@ -1,12 +1,17 @@
 package com.localli.deepak.cryptotips.currencydetails.marketdetails;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -14,6 +19,7 @@ import android.widget.TextView;
 import com.android.volley.RequestQueue;
 import com.google.gson.Gson;
 import com.localli.deepak.cryptotips.R;
+import com.localli.deepak.cryptotips.alerts.AddAlertActivity;
 import com.localli.deepak.cryptotips.formatters.PercentageFormatter;
 import com.localli.deepak.cryptotips.formatters.PriceFormatter;
 import com.localli.deepak.cryptotips.formatters.SupplyFormatter;
@@ -144,5 +150,27 @@ public class MarketDetailsFragment extends Fragment{
             athPctChangeTv.setText("N/A");
         else PercentageFormatter.setPercentChangeTextView(context,athPctChangeTv,coinItem.getAthChangePercentage());
 
+    }
+
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_coin_details,menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.action_add_alert:
+                Log.i(TAG,"Add Alert clicked!");
+                Intent intent = new Intent(getActivity(), AddAlertActivity.class);
+                intent.putExtra(getString(R.string.coin_id),coinItem);
+                startActivity(intent);
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

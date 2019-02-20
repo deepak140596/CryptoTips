@@ -9,6 +9,7 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
@@ -47,7 +48,7 @@ public class AlertBackgroundService extends IntentService {
 
     String TAG = "ALERT_BG_SERVICE";
 
-    private Long DURATION = 1000 * 60l; // 10 seconds
+    private Long DURATION = 1000 * 60l; // 60 seconds
     private Long DELAY = 1000l;
     private Timer timer = new Timer();
 
@@ -95,7 +96,7 @@ public class AlertBackgroundService extends IntentService {
 
         application = getApplication();
         // initialise alert view model
-        alertViewModel = new AlertViewModel(application);
+
 
         // inisitialise a gson builder
         GsonBuilder gsonBuilder = new GsonBuilder();
@@ -107,8 +108,16 @@ public class AlertBackgroundService extends IntentService {
             @Override
             public void run() {
                 // your code here
-                initVolleyCallback();
-                getActiveAlertsFromDB();
+                alertViewModel = new AlertViewModel(application);
+                try {
+                    initVolleyCallback();
+                    new GetActiveAlertsAsyncTask(alertViewModel).execute();
+                } catch (Exception e) {
+                    e.printStackTrace();
+
+                }
+
+                //getActiveAlertsFromDB();
             }
         }, DELAY, DURATION);
     }
@@ -120,40 +129,57 @@ public class AlertBackgroundService extends IntentService {
     }
 
 
-    private void getActiveAlertsFromDB(){
-
-        // use observeForever with proper LifeCycleOwner (service's) Activity cannot be cast
-        alertViewModel.getActiveAlertsList().observeForever(new Observer<List<AlertEntity>>() {
-            @Override
-            public void onChanged(@Nullable List<AlertEntity> alertEntities) {
-                //Log.i(TAG,"SIZE: "+alertEntities.size());
-                for(AlertEntity entity : alertEntities){
-
-                    // generate url for every coin for details
-                    String GET_COIN_BY_ID_URL = String.format(CoinGeckoService.GET_SIMPLE_PRICE,
-                            entity.getCoinId(),entity.getVsCurrency());
-
-                    // call volley service
-                    volleyService = new VolleyService(volleyResultCallback,application);
-                    volleyService.getSimplePriceDataVolley("GET",GET_COIN_BY_ID_URL,entity);
-                }
 
 
+    public class GetActiveAlertsAsyncTask extends AsyncTask<Void,Void,Void>{
 
-            }
-        });
+        AlertViewModel alertViewModel;
+        public GetActiveAlertsAsyncTask(AlertViewModel alertViewModel){
+            this.alertViewModel = alertViewModel;
+        }
+        @Override
+        protected Void doInBackground(Void... voids) {
+            List<AlertEntity> alertEntities =  alertViewModel.getActiveAlertsList();
+            getActiveAlertsFromDB(alertEntities);
+            return null;
+        }
+    }
+
+    private void getActiveAlertsFromDB(List<AlertEntity> alertEntities){
+
+        //List<AlertEntity> alertEntities =  alertViewModel.getActiveAlertsList();
+        Log.i(TAG,"Alert size: "+alertEntities.size());
+        for(AlertEntity entity : alertEntities){
+
+            // generate url for every coin for details
+            String GET_COIN_BY_ID_URL = String.format(CoinGeckoService.GET_SIMPLE_PRICE,
+                    entity.getCoinId(),entity.getVsCurrency());
+
+            // call volley service
+            volleyService = new VolleyService(volleyResultCallback,application);
+            volleyService.getSimplePriceDataVolley("GET",GET_COIN_BY_ID_URL,entity);
+        }
+
 
     }
 
-    void initVolleyCallback(){
+    void initVolleyCallback() throws Exception{
         volleyResultCallback = new VolleyResult() {
             @Override
             public void notifySuccess(String requestType, String response,AlertEntity alertEntity) {
-                //Log.i(TAG,"Response: "+response);
+                Log.i(TAG,"Alert Service Breathing!");
+                Log.i(TAG,"Response: "+response);
                 //Log.i(TAG,"COIN: "+alertEntity.getName()+" PRICE: "+alertEntity.getVsCurrency()+" "+
                   //      getCurrentPrice(response,alertEntity));
 
-                double currentPrice = getCurrentPrice(response,alertEntity);
+                double currentPrice = 0;
+                try {
+                    currentPrice = getCurrentPrice(response,alertEntity);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                if(currentPrice <0 )
+                    return;
                 double triggerPrice = alertEntity.getTriggerPrice();
                 int isRiseDrop = alertEntity.getRiseDrop(); // Rise = 1 Drop = 0
 
@@ -181,7 +207,7 @@ public class AlertBackgroundService extends IntentService {
     }
 
 
-    private double getCurrentPrice(String response, AlertEntity alertEntity){
+    private double getCurrentPrice(String response, AlertEntity alertEntity) throws InterruptedException {
 
         try {
             JSONObject object = new JSONObject(response);
@@ -193,29 +219,34 @@ public class AlertBackgroundService extends IntentService {
 
         } catch (JSONException e) {
             e.printStackTrace();
+            Thread.sleep(10000l);
+            //onCreate();
         }
 
-        return 0.0;
+        return -9999999;
     }
 
     public void sendNotification(AlertEntity alertEntity){
 
+        // pending intent when user clicks on the active notification
         Intent intent = new Intent(this,CurrencyDetailsTabsActivity.class);
+        Log.i(TAG,"COIN_ID: "+alertEntity.getCoinId());
         intent.putExtra(getString(R.string.coin_id),alertEntity.getCoinId());
         intent.putExtra(getString(R.string.vs_currency),alertEntity.getVsCurrency());
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this,0,intent,0);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this,notificationId,intent,PendingIntent.FLAG_UPDATE_CURRENT);
 
         Log.i(TAG,"Notification triggered! Coin: "+alertEntity.getName()+" PRICE: "+alertEntity.getVsCurrency()+" "+
         alertEntity.getTriggerPrice()+" RISE_DROP : "+alertEntity.getRiseDrop());
 
         // set rise drop alert text
         String riseDropAlert = (alertEntity.getRiseDrop()==1)? " rises above ": " drops below ";
-        String title = alertEntity.getName()+" ("+alertEntity.getCoinId().toUpperCase()+") price alert!";
+        String title = alertEntity.getName()+" ("+alertEntity.getSymbol().toUpperCase()+") price alert!";
         String textContent = alertEntity.getName()+" ("+alertEntity.getSymbol().toUpperCase()+") "+
                 riseDropAlert +
                 PriceFormatter.priceFormatterWithSymbol(application,alertEntity.getTriggerPrice(),alertEntity.getVsCurrency());
 
+        // select notification sound
         Uri sound = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.slow_spring_board);
 
         // build notification

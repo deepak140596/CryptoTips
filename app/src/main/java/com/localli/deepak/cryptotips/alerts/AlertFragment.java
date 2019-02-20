@@ -22,6 +22,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;;
 
 import com.localli.deepak.cryptotips.DataBase.alerts.AlertEntity;
@@ -50,6 +51,7 @@ public class AlertFragment extends Fragment implements RecyclerItemTouchHelper.R
     RecyclerView recyclerView;
     SwipeRefreshLayout swipeRefreshLayout;
     FloatingActionButton addFab;
+    LinearLayout emptyState;
 
     List<AlertEntity> alertList ;
     AlertItemAdapter adapter;
@@ -57,6 +59,8 @@ public class AlertFragment extends Fragment implements RecyclerItemTouchHelper.R
     //VolleyResult volleyResultCallback = null;
     //VolleyService volleyService;
     //Gson gson;
+
+    boolean isRecyclerViewInflated;
 
 
     @Nullable
@@ -67,6 +71,8 @@ public class AlertFragment extends Fragment implements RecyclerItemTouchHelper.R
         activity = (AppCompatActivity)getActivity();
 
         alertViewModel = ViewModelProviders.of(activity).get(AlertViewModel.class);
+
+        isRecyclerViewInflated = false;
 
         return inflater.inflate(R.layout.fragment_alert,container,false);
     }
@@ -82,12 +88,14 @@ public class AlertFragment extends Fragment implements RecyclerItemTouchHelper.R
         addFab = view.findViewById(R.id.frag_alert_add_fab);
         swipeRefreshLayout = view.findViewById(R.id.frag_alert_swipe_layout);
         recyclerView = view.findViewById(R.id.frag_alert_recycler_view);
+        emptyState = view.findViewById(R.id.frag_alert_empty_state_ll);
 
         LinearLayoutManager ll = new LinearLayoutManager(activity);
         ll.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(ll);
         recyclerView.setHasFixedSize(true);
         recyclerView.addItemDecoration(new DividerItemDecoration(activity, DividerItemDecoration.VERTICAL));
+
 
         swipeRefreshLayout.setOnRefreshListener(this);
 
@@ -104,6 +112,9 @@ public class AlertFragment extends Fragment implements RecyclerItemTouchHelper.R
         // add pass ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT as param
         ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new RecyclerItemTouchHelper(0, ItemTouchHelper.LEFT, this,2);
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recyclerView);
+        alertList = new ArrayList<>();
+        adapter = new AlertItemAdapter(activity,alertList);
+        recyclerView.setAdapter(adapter);
 
         addScrollListenerToRecyclerView();
         getAlerts();
@@ -116,8 +127,17 @@ public class AlertFragment extends Fragment implements RecyclerItemTouchHelper.R
                 alertList = alertEntities;
                 //Log.i(TAG,"Size: "+alertEntities.size());
                 //Log.i(TAG,"NAME2: "+alertEntities.get(1).getName());
-                adapter = new AlertItemAdapter(activity,alertList);
-                recyclerView.setAdapter(adapter);
+                adapter.setItems(alertList);
+
+                if(!isRecyclerViewInflated) {
+                    recyclerView.setAdapter(adapter);
+                    isRecyclerViewInflated = true;
+                }
+
+                if(adapter.getItemCount()==0){
+                    emptyState.setVisibility(View.VISIBLE);
+                }else
+                    emptyState.setVisibility(View.GONE);
             }
         });
     }
@@ -140,7 +160,7 @@ public class AlertFragment extends Fragment implements RecyclerItemTouchHelper.R
             final int deletedIndex = viewHolder.getAdapterPosition();
 
             // remove the item from the recycler view
-            //adapter.removeItem(viewHolder.getAdapterPosition());
+            adapter.removeItem(viewHolder.getAdapterPosition());
             // TODO delete from Portfolio DB
             alertViewModel.delete(deletedItem);
 
@@ -150,7 +170,7 @@ public class AlertFragment extends Fragment implements RecyclerItemTouchHelper.R
                 @Override
                 public void onClick(View v) {
                     // undo is selected, restore the item
-                    //adapter.restoreItem(deletedItem,deletedIndex);
+                    adapter.restoreItem(deletedItem,deletedIndex);
                     // TODO add to Portfolio DB
                     alertViewModel.insert(deletedItem);
                 }

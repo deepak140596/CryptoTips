@@ -16,7 +16,8 @@ import java.util.List;
 public class AlertViewModel extends AndroidViewModel {
     private AlertRepository alertRepository;
     private LiveData<List<AlertEntity>> alertsList;
-    private LiveData<List<AlertEntity>> activeAlertsList;
+    //private LiveData<List<AlertEntity>> activeAlertsList;
+    private List<AlertEntity> activeAlertsList;
 
     public AlertViewModel(Application application){
         super(application);
@@ -29,7 +30,7 @@ public class AlertViewModel extends AndroidViewModel {
         return alertsList;
     }
 
-    public LiveData<List<AlertEntity>> getActiveAlertsList(){
+    public List<AlertEntity> getActiveAlertsList(){
         return activeAlertsList;
     }
 

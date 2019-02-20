@@ -2,6 +2,7 @@ package com.localli.deepak.cryptotips.currencydetails.chartandtable;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,6 +12,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +42,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.localli.deepak.cryptotips.DataBase.SharedPrefSimpleDB;
 import com.localli.deepak.cryptotips.R;
+import com.localli.deepak.cryptotips.alerts.AddAlertActivity;
+import com.localli.deepak.cryptotips.currencydetails.CurrencyDetailsTabsActivity;
 import com.localli.deepak.cryptotips.formatters.PercentageFormatter;
 import com.localli.deepak.cryptotips.formatters.PriceFormatter;
 import com.localli.deepak.cryptotips.formatters.XAxisDayFormatter;
@@ -374,10 +379,32 @@ public class GraphFragment extends Fragment {
         double change = (entries.get(entries.size()-1).getY() - entries.get(0).getY());
         changePctTD = (change/(entries.get(0).getY()))*100.00;
         //PercentageFormatter.setPercentChangeTextView(context,changeTDTv,changePctTD);
-        PercentageFormatter.setPriceAndPercentChangeTextView(context,changeTDTv,changePctTD,change);
+        PercentageFormatter.setPriceAndPercentChangeTextViewTwoLines(context,changeTDTv,changePctTD,change);
 
         progressBar.setVisibility(View.GONE);
 
+    }
+
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_coin_details,menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.action_add_alert:
+                Log.i(TAG,"Add Alert clicked!");
+                Intent intent = new Intent(getActivity(), AddAlertActivity.class);
+                intent.putExtra(getString(R.string.coin_id),coinItem);
+                startActivity(intent);
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 }

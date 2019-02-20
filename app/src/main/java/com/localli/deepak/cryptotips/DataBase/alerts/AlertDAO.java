@@ -25,5 +25,6 @@ public interface AlertDAO {
     LiveData<List<AlertEntity>> getAlerts();
 
     @Query("SELECT * FROM alerts_table WHERE is_triggered = 0")
-    LiveData<List<AlertEntity>> getActiveAlerts();
+    //LiveData<List<AlertEntity>> getActiveAlerts();
+    List<AlertEntity> getActiveAlerts();
 }

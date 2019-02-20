@@ -110,6 +110,7 @@ public class FavoriteListFragment extends Fragment implements SwipeRefreshLayout
         Set<String> allFavCoinsSet = SharedPrefSimpleDB.getAllFavorites(context);
         String allFavCoinsString="";
         if(allFavCoinsSet == null || allFavCoinsSet.size() == 0){
+            //return;
             allFavCoinsSet = new HashSet<>();
             allFavCoinsSet.add("bitcoin,ethereum");
             SharedPrefSimpleDB.insertFavoriteToDB(context,"bitcoin");

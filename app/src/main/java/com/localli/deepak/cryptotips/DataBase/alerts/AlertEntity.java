@@ -63,6 +63,22 @@ public class AlertEntity {
         this.initialSavedPrice = initialSavedPrice;
     }
 
+    @Override
+    public String toString() {
+        return "AlertEntity{" +
+                "alertId=" + alertId +
+                ", coinId='" + coinId + '\'' +
+                ", name='" + name + '\'' +
+                ", symbol='" + symbol + '\'' +
+                ", imgUrl='" + imgUrl + '\'' +
+                ", triggerPrice=" + triggerPrice +
+                ", initialSavedPrice=" + initialSavedPrice +
+                ", percentageChange=" + percentageChange +
+                ", vsCurrency='" + vsCurrency + '\'' +
+                ", riseDrop=" + riseDrop +
+                ", isTriggered=" + isTriggered +
+                '}';
+    }
 
     @NonNull
     public long getAlertId() {

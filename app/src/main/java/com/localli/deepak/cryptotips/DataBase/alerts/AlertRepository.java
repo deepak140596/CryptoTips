@@ -14,7 +14,8 @@ public class AlertRepository {
 
     private AlertDAO alertDAO;
     private LiveData<List<AlertEntity>> alertsList;
-    private LiveData<List<AlertEntity>> activeAlertsList;
+    //private LiveData<List<AlertEntity>> activeAlertsList;
+    private List<AlertEntity> activeAlertsList;
 
     public AlertRepository(Application application){
         AlertDatabase db = AlertDatabase.getDatabase(application);
@@ -27,7 +28,7 @@ public class AlertRepository {
         return alertsList;
     }
 
-    public LiveData<List<AlertEntity>> getActiveAlertsList(){
+    public List<AlertEntity> getActiveAlertsList(){
         return activeAlertsList;
     }
 

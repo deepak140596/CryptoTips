@@ -65,8 +65,10 @@ public class CurrencyDetailsTabsActivity extends AppCompatActivity {
 
         COIN_DETAILS_URL = String.format(CoinGeckoService.COINS_BY_ID_URL, vsCurrency,coinID);
 
-        if(coinID != null && vsCurrency != null)
+        if(coinID != null && vsCurrency != null) {
+            Log.i(TAG, "COIN ID: " + coinID);
             setupVolley();
+        }
         else {
 
             coinItem = (CoinItem) intent.getSerializableExtra(GraphFragment.CURRENCY_ID);
@@ -89,12 +91,10 @@ public class CurrencyDetailsTabsActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.home:
-
-                break;
-            default:
+            case android.R.id.home:
+                Log.i(TAG,"Home  Clicked.");
                 finish();
-                return true;
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
