@@ -1,8 +1,8 @@
 package com.localli.deepak.cryptotips.viewmodel;
 
 import android.app.Application;
-import android.arch.lifecycle.AndroidViewModel;
-import android.support.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.annotation.NonNull;
 
 import com.localli.deepak.cryptotips.DataBase.favorite.FavoriteEntity;
 import com.localli.deepak.cryptotips.DataBase.favorite.FavoriteRepository;

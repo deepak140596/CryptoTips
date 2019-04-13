@@ -1,11 +1,11 @@
 package com.localli.deepak.cryptotips.alerts;
 
 import android.annotation.SuppressLint;
-import android.arch.lifecycle.ViewModelProviders;
-import android.content.Intent;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -32,7 +32,6 @@ import com.localli.deepak.cryptotips.models.CoinItem;
 import com.localli.deepak.cryptotips.models.SupportedCurrency;
 import com.localli.deepak.cryptotips.rest.CoinGeckoService;
 import com.localli.deepak.cryptotips.rest.VolleyService;
-import com.localli.deepak.cryptotips.utils.CurrencySymbolUtils;
 import com.localli.deepak.cryptotips.utils.VolleyResult;
 import com.localli.deepak.cryptotips.viewmodel.AlertViewModel;
 

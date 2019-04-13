@@ -2,7 +2,7 @@ package com.localli.deepak.cryptotips.views;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.constraint.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import android.text.format.DateUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;

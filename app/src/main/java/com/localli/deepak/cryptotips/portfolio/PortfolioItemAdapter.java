@@ -1,21 +1,19 @@
 package com.localli.deepak.cryptotips.portfolio;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.localli.deepak.cryptotips.DataBase.portfolio.PortfolioEntity;
 import com.localli.deepak.cryptotips.R;
 import com.localli.deepak.cryptotips.formatters.PriceFormatter;
-import com.localli.deepak.cryptotips.formatters.SupplyFormatter;
 import com.localli.deepak.cryptotips.models.CoinItem;
 
 import java.util.List;

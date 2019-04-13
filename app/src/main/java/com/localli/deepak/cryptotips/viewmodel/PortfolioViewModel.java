@@ -1,9 +1,9 @@
 package com.localli.deepak.cryptotips.viewmodel;
 
 import android.app.Application;
-import android.arch.lifecycle.AndroidViewModel;
-import android.arch.lifecycle.LiveData;
-import android.support.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
+import androidx.annotation.NonNull;
 
 import com.localli.deepak.cryptotips.DataBase.portfolio.PortfolioEntity;
 import com.localli.deepak.cryptotips.DataBase.portfolio.PortfolioRepository;

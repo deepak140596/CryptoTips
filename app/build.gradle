@@ -3,7 +3,6 @@ apply plugin: 'io.fabric'
 
 android {
     compileSdkVersion 28
-    buildToolsVersion "26.0.2"
     defaultConfig {
         applicationId "com.localli.deepak.cryptotips"
         minSdkVersion 19
@@ -11,7 +10,7 @@ android {
         versionCode 9
         versionName "1.9"
         multiDexEnabled true
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
@@ -40,60 +39,55 @@ android {
 }
 
 dependencies {
-    implementation 'com.android.support:support-vector-drawable:28.0.0-alpha1'
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {
+    implementation 'androidx.vectordrawable:vectordrawable:1.0.0-beta01'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {
         transitive = true
     }
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0-alpha4', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:28.0.0'
-    compile 'com.android.support:design:28.0.0'
-    compile 'com.android.support:recyclerview-v7:28.0.0'
-    compile 'com.android.support:cardview-v7:28.0.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha7'
-    compile 'de.hdodenhof:circleimageview:2.1.0'
-    compile 'com.github.bumptech.glide:glide:3.6.1'
-    compile 'com.google.firebase:firebase-core:11.4.2'
-    compile 'com.google.firebase:firebase-config:11.4.2'
-
-    compile 'org.jsoup:jsoup:1.11.2'
+    implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
+    implementation 'com.google.android.material:material:1.0.0-beta01'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0-beta01'
+    implementation 'androidx.cardview:cardview:1.0.0-beta01'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
+    implementation 'de.hdodenhof:circleimageview:2.1.0'
+    implementation 'com.github.bumptech.glide:glide:3.6.1'
+    implementation 'com.google.firebase:firebase-core:16.0.8'
+    implementation 'com.google.firebase:firebase-config:16.5.0'
 
     implementation 'com.google.code.gson:gson:2.8.5'
-    compile('com.github.fcopardo:easyrest:v1.4.2@aar') {
+    implementation('com.github.fcopardo:easyrest:v1.4.2@aar') {
         transitive = true
     }
 
     // Volley
-    compile 'com.android.volley:volley:1.1.1'
+    implementation 'com.android.volley:volley:1.1.1'
 
     //  Graph View
-    //implementation 'com.jjoe64:graphview:4.2.2'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0-alpha'
 
     // Single Toggle Button
-    compile 'com.nex3z:toggle-button-group:1.1.8'
+    implementation 'com.nex3z:toggle-button-group:1.1.8'
 
-    // Material Favorite Button
-    compile 'com.github.ivbaranov:materialfavoritebutton:0.1.5'
     // Material Dialog
     implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
 
     // Floating Search View
-    compile 'com.github.arimorty:floatingsearchview:2.1.1'
+    implementation 'com.github.arimorty:floatingsearchview:2.1.1'
 
     // Room components
-    implementation "android.arch.persistence.room:runtime:$rootProject.roomVersion"
-    annotationProcessor "android.arch.persistence.room:compiler:$rootProject.roomVersion"
-    androidTestImplementation "android.arch.persistence.room:testing:$rootProject.roomVersion"
+    implementation "androidx.room:room-runtime:$rootProject.roomVersion"
+    annotationProcessor "androidx.room:room-compiler:$rootProject.roomVersion"
+    androidTestImplementation "androidx.room:room-testing:$rootProject.roomVersion"
 
     // Lifecycle components
-    implementation "android.arch.lifecycle:extensions:$rootProject.archLifecycleVersion"
-    annotationProcessor "android.arch.lifecycle:compiler:$rootProject.archLifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.archLifecycleVersion"
+    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$rootProject.archLifecycleVersion"
 
 
-    testCompile 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.12'
 }
 apply plugin: 'com.google.gms.google-services'
 

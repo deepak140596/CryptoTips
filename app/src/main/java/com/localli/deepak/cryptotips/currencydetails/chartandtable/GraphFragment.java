@@ -1,15 +1,14 @@
 package com.localli.deepak.cryptotips.currencydetails.chartandtable;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -19,7 +18,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -29,9 +27,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.components.YAxis;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
@@ -43,7 +38,6 @@ import com.google.gson.GsonBuilder;
 import com.localli.deepak.cryptotips.DataBase.SharedPrefSimpleDB;
 import com.localli.deepak.cryptotips.R;
 import com.localli.deepak.cryptotips.alerts.AddAlertActivity;
-import com.localli.deepak.cryptotips.currencydetails.CurrencyDetailsTabsActivity;
 import com.localli.deepak.cryptotips.formatters.PercentageFormatter;
 import com.localli.deepak.cryptotips.formatters.PriceFormatter;
 import com.localli.deepak.cryptotips.formatters.XAxisDayFormatter;
@@ -54,9 +48,7 @@ import com.nex3z.togglebuttongroup.SingleSelectToggleGroup;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 

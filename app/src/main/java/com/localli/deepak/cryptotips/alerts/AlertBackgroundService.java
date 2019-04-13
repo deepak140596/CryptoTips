@@ -2,21 +2,19 @@ package com.localli.deepak.cryptotips.alerts;
 
 import android.app.Application;
 import android.app.IntentService;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.app.Service;
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
+
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.IBinder;
-import android.support.annotation.Nullable;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.google.gson.Gson;
@@ -26,7 +24,6 @@ import com.localli.deepak.cryptotips.NavigationActivity;
 import com.localli.deepak.cryptotips.R;
 import com.localli.deepak.cryptotips.currencydetails.CurrencyDetailsTabsActivity;
 import com.localli.deepak.cryptotips.formatters.PriceFormatter;
-import com.localli.deepak.cryptotips.models.CoinItem;
 import com.localli.deepak.cryptotips.rest.CoinGeckoService;
 import com.localli.deepak.cryptotips.rest.VolleyService;
 import com.localli.deepak.cryptotips.utils.VolleyResult;
@@ -35,7 +32,6 @@ import com.localli.deepak.cryptotips.viewmodel.AlertViewModel;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
