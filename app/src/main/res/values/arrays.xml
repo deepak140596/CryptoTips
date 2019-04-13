@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="sort_options">
+        <item>Name A-Z</item>
+        <item>Name Z-A</item>
+        <item>Rank Low-High</item>
+        <item>Rank High-Low</item>
+        <item>Change 24h High-Low</item>
+        <item>Change 24h Low-High</item>
+        <item>Market Cap High-Low</item>
+        <item>Market Cap Low-High</item>
+        <item>Price High-Low</item>
+        <item>Price Low-High</item>
+        <item>Volume 24h High-Low</item>
+        <item>Volume 24h Low-High</item>
+        <item>ATH Change Low-High</item>
+        <item>ATH Change High-Low</item>
+    </string-array>
+
+    <string-array name="currencies">
+        <item>BTC</item>
+        <item>ETH</item>
+        <item>LTC</item>
+        <item>BCH</item>
+        <item>BNB</item>
+        <item>EOS</item>
+        <item>XRP</item>
+        <item>XLM</item>
+        <item>USD</item>
+        <item>AED</item>
+        <item>AUD</item>
+        <item>BDT</item>
+        <item>BHD</item>
+        <item>BMD</item>
+        <item>BRL</item>
+        <item>CAD</item>
+        <item>CHF</item>
+        <item>CLP</item>
+        <item>CNY</item>
+        <item>CZK</item>
+        <item>DKK</item>
+        <item>EUR</item>
+        <item>GBP</item>
+        <item>HKD</item>
+        <item>HUF</item>
+        <item>IDR</item>
+        <item>ILS</item>
+        <item>INR</item>
+        <item>JPY</item>
+        <item>KRW</item>
+        <item>KWD</item>
+        <item>LKR</item>
+        <item>MMK</item>
+        <item>MXN</item>
+        <item>NYR</item>
+        <item>NOK</item>
+        <item>NZD</item>
+        <item>PHP</item>
+        <item>PKR</item>
+        <item>PLN</item>
+        <item>RUB</item>
+        <item>SAR</item>
+        <item>SEK</item>
+        <item>SGD</item>
+        <item>THB</item>
+        <item>TRY</item>
+        <item>TWD</item>
+        <item>USD</item>
+        <item>VEF</item>
+        <item>ZAR</item>
+        <item>XDR</item>
+        <item>XAG</item>
+        <item>XAU</item>
+    </string-array>
+
+
+    <string-array name="currency_symbols">
+
+        <item>Ƀ</item>
+        <item>Ξ</item>
+        <item>Ł</item>
+        <item>BCH</item>
+        <item>BNB</item>
+        <item>EOS</item>
+        <item>XRP</item>
+        <item>XLM</item>
+        <item>$</item>
+        <item>د.إ</item>
+        <item>$</item>
+        <item>৳</item>
+        <item> ‎د.ب</item>
+        <item>$</item>
+        <item>R$</item>
+        <item>C$</item>
+        <item>₣</item>
+        <item>CLP</item>
+        <item>¥</item>
+        <item>‎Kč</item>
+        <item>kR</item>
+        <item>€</item>
+        <item>£</item>
+        <item>HK$</item>
+        <item>Ft</item>
+        <item>Rp</item>
+        <item>ILS</item>
+        <item>₹</item>
+        <item>JP¥</item>
+        <item>₩</item>
+        <item>KWD</item>
+        <item>LKR</item>
+        <item>MMK</item>
+        <item>MXN</item>
+        <item>NYR</item>
+        <item>NOK</item>
+        <item>NZD</item>
+        <item>₱</item>
+        <item>PKR</item>
+        <item>zł</item>
+        <item>₽</item>
+        <item>﷼</item>
+        <item>kr</item>
+        <item>SGD</item>
+        <item>฿</item>
+        <item>TRY</item>
+        <item>NT$</item>
+        <item>$</item>
+        <item>Bs</item>
+        <item>ZAR</item>
+        <item>XDR</item>
+        <item>XAG</item>
+        <item>XAU</item>
+
+    </string-array>
+
+</resources>

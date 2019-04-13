@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.localli.deepak.cryptotips">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -10,10 +11,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme.NoActionBar"
+        tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name"
+            android:name=".SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,15 +23,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".NewsActivity"
-            android:label="@string/title_activity_news"
+            android:name=".NavigationActivity"
+            android:label="@string/title_activity_navigation"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".AboutUsActivity"
-            android:label="About Us"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ApiNewsActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".news.WebViewActivity" />
+        <activity android:name=".currencydetails.CurrencyDetailsTabsActivity" />
+        <activity android:name=".portfolio.AddPortfolio" />
+        <activity android:name=".alerts.AddAlertActivity"></activity>
+        
+        <service android:name=".alerts.AlertBackgroundService" android:icon="@drawable/ninja_cat" android:label="@string/app_name"
+            android:enabled="true"/>
     </application>
+    
 
 </manifest>

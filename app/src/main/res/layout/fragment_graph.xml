@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/frag_graph_selected_price_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="4dp"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:text=""/>
+
+                <TextView
+                    android:id="@+id/frag_graph_selected_day_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="4dp"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="14sp"
+                    android:text=""/>
+
+
+                <com.nex3z.togglebuttongroup.SingleSelectToggleGroup
+                    android:id="@+id/frag_graph_toggle_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    app:tbgCheckedButton="@+id/frag_graph_choice_24hr">
+
+                    <com.nex3z.togglebuttongroup.button.CircularToggle
+                        android:id="@+id/frag_graph_choice_24hr"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="24hr"/>
+
+                    <com.nex3z.togglebuttongroup.button.CircularToggle
+                        android:id="@+id/frag_graph_choice_7day"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="7D"/>
+
+                    <com.nex3z.togglebuttongroup.button.CircularToggle
+                        android:id="@+id/frag_graph_choice_14day"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="14D"/>
+
+                    <com.nex3z.togglebuttongroup.button.CircularToggle
+                        android:id="@+id/frag_graph_choice_1M"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1M"/>
+
+                    <com.nex3z.togglebuttongroup.button.CircularToggle
+                        android:id="@+id/frag_graph_choice_2M"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2M"/>
+
+                    <com.nex3z.togglebuttongroup.button.CircularToggle
+                        android:id="@+id/frag_graph_choice_3M"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="3M"/>
+
+                    <com.nex3z.togglebuttongroup.button.CircularToggle
+                        android:id="@+id/frag_graph_choice_6M"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="6M"/>
+
+                    <com.nex3z.togglebuttongroup.button.CircularToggle
+                        android:id="@+id/frag_graph_choice_1yr"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1yr"/>
+
+                    <com.nex3z.togglebuttongroup.button.CircularToggle
+                        android:id="@+id/frag_graph_choice_all"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="All"/>
+
+                </com.nex3z.togglebuttongroup.SingleSelectToggleGroup>
+
+
+            </LinearLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/frag_graph_graph_view2"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:layout_marginTop="20dp"/>
+
+                <ProgressBar
+                    android:id="@+id/frag_graph_loading_progress_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"/>
+
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_margin="16dp">
+
+                    <TextView
+                        android:id="@+id/frag_graph_selected_tf_change_pct_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:textAlignment="center"
+                        android:textSize="12sp"
+                        android:text="Change to date"/>
+
+                    <TextView
+                        android:id="@+id/frag_graph_selected_tf_change_pct_value_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:textAlignment="center"
+                        android:layout_marginTop="8dp"
+                        android:textSize="14sp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_margin="16dp">
+
+                    <TextView
+                        android:id="@+id/frag_graph_selected_tf_high_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:textAlignment="center"
+                        android:textSize="12sp"
+                        android:text="High"/>
+
+                    <TextView
+                        android:id="@+id/frag_graph_selected_tf_high_value_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:textAlignment="center"
+                        android:layout_marginTop="8dp"
+                        android:textSize="14sp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_margin="16dp">
+
+                    <TextView
+                        android:id="@+id/frag_graph_selected_tf_low_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:textAlignment="center"
+                        android:textSize="12sp"
+                        android:text="Low"/>
+
+                    <TextView
+                        android:id="@+id/frag_graph_selected_tf_low_value_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:textAlignment="center"
+                        android:layout_marginTop="8dp"
+                        android:textSize="14sp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="100dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/color_grey"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:background="?attr/selectableItemBackground">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Name : "/>
+                    <TextView
+                        android:id="@+id/frag_graph_name_tv"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textAlignment="textEnd"
+                        android:text="Bitcoin"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:background="@color/color_grey">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Rank : "/>
+                    <TextView
+                        android:id="@+id/frag_graph_rank_tv"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textAlignment="textEnd"
+                        android:text="#1"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:background="?attr/selectableItemBackground">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="24hr change % : "/>
+                    <TextView
+                        android:id="@+id/frag_graph_24hr_price_change_pct_tv"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textAlignment="textEnd"
+                        android:text="+ 2.4%"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:background="@color/color_grey">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="24hr price change : "/>
+                    <TextView
+                        android:id="@+id/frag_graph_24hr_price_change_tv"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textAlignment="textEnd"
+                        android:text="+ $130"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:background="?attr/selectableItemBackground">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="24hr High : "/>
+                    <TextView
+                        android:id="@+id/frag_graph_24hr_high_tv"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textAlignment="textEnd"
+                        android:text="$ 4200"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:background="@color/color_grey">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="24hr low : "/>
+                    <TextView
+                        android:id="@+id/frag_graph_24hr_low_tv"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textAlignment="textEnd"
+                        android:text="$ 4100"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:background="?attr/selectableItemBackground">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Market Cap : "/>
+                    <TextView
+                        android:id="@+id/frag_graph_market_cap_tv"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textAlignment="textEnd"
+                        android:text="$ 72B"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>

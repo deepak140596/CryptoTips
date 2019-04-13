@@ -12,10 +12,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.localli.deepak.cryptotips.Objects.FeedbackItem;
-
 /**
  * Created by Deepak Prasad on 22-01-2018.
  */
@@ -128,12 +124,6 @@ public class RateUs {
                                 }).setPositiveButton("Send", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
-                                        DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference().child("feedbacks");
-                                        String feedback_sub=subject.getText().toString(),
-                                                feedback_body=body.getText().toString();
-                                        String postId=databaseReference.push().getKey();
-                                        FeedbackItem item=new FeedbackItem(postId,feedback_sub,feedback_body);
-                                        databaseReference.child(postId).setValue(item);
 
                                         Toast.makeText(mContext, "Thanks for Feedback!", Toast.LENGTH_SHORT).show();
                                     }

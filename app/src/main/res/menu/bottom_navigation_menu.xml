@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/bottom_navigation_home"
+        android:icon="@mipmap/ic_charts"
+        android:title="Track" />
+
+    <item
+        android:id="@+id/bottom_navigation_portfolio"
+        android:icon="@mipmap/ic_portfolio"
+        android:title="Portfolio" />
+
+    <item
+        android:id="@+id/bottom_navigation_news"
+        android:icon="@mipmap/ic_news"
+        android:title="News" />
+
+    <item
+        android:id="@+id/bottom_navigation_alert"
+        android:icon="@mipmap/ic_bell"
+        android:title="Alerts" />
+
+    <item
+        android:id="@+id/bottom_navigation_about"
+        android:icon="@mipmap/ic_account"
+        android:title="About" />
+
+</menu>
