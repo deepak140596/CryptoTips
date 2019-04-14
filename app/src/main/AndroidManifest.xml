@@ -15,7 +15,7 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.DayNight">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,13 +25,22 @@
         <activity
             android:name=".NavigationActivity"
             android:label="@string/title_activity_navigation"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.DayNight" />
+
         <activity android:name=".news.WebViewActivity" />
-        <activity android:name=".currencydetails.CurrencyDetailsTabsActivity" />
-        <activity android:name=".portfolio.AddPortfolio" />
-        <activity android:name=".alerts.AddAlertActivity"></activity>
+
+        <activity android:name=".currencydetails.CurrencyDetailsTabsActivity"
+            android:theme="@style/AppTheme.DayNight"/>
+
+        <activity android:name=".portfolio.AddPortfolioActivity"
+            android:theme="@style/AppTheme.DayNight"/>
+
+        <activity android:name=".alerts.AddAlertActivity"
+            android:theme="@style/AppTheme.DayNight"/>
         
-        <service android:name=".alerts.AlertBackgroundService" android:icon="@drawable/ninja_cat" android:label="@string/app_name"
+        <service android:name=".alerts.AlertBackgroundService"
+            android:icon="@drawable/ninja_cat"
+            android:label="@string/app_name"
             android:enabled="true"/>
     </application>
     

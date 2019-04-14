@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -164,7 +164,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginLeft="16dp"
             android:text="Settings"
-            android:textColor="#000000"
+            android:textColor="?android:attr/textColorPrimary"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -213,6 +213,30 @@
                 android:text="100"/>
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/profile_settings_theme_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:clickable="true"
+            android:background="?attr/selectableItemBackground">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Night Mode"/>
+
+            <Switch
+                android:id="@+id/profile_theme_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="textEnd"
+                android:clickable="false"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -241,7 +265,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="CryptoTrack"
-                    android:textColor="#000000" />
+                    android:textColor="?android:attr/textColorPrimary" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -268,13 +292,14 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_marginRight="16dp"
-                android:src="@mipmap/ic_favorite_filled"/>
+                android:theme="@style/AppTheme.DayNight"
+                app:srcCompat="@drawable/ic_fav_filled_daynight"/>
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textColor="#000000"
+                android:textColor="?android:attr/textColorPrimary"
                 android:layout_gravity="center_vertical"
                 android:text="Rate Us"/>
 
@@ -286,7 +311,7 @@
             android:layout_height="wrap_content"
             android:padding="16dp"
             android:text="Send Feedback"
-            android:textColor="#000000"
+            android:textColor="?android:attr/textColorPrimary"
             android:clickable="true"
             android:background="?attr/selectableItemBackground"/>
 
@@ -296,7 +321,7 @@
             android:layout_height="wrap_content"
             android:padding="16dp"
             android:text="Privacy Policy"
-            android:textColor="#000000"
+            android:textColor="?android:attr/textColorPrimary"
             android:clickable="true"
             android:background="?attr/selectableItemBackground"/>
 
@@ -307,7 +332,7 @@
             android:padding="16dp"
             android:textAlignment="center"
             android:text="@string/made_in_india"
-            android:textColor="#000000"/>
+            android:textColor="?android:attr/textColorPrimary"/>
     </LinearLayout>
 
 </ScrollView>

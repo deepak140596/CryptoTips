@@ -32,9 +32,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import androidx.appcompat.app.AppCompatDelegate;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class AddPortfolio extends AppCompatActivity {
+public class AddPortfolioActivity extends AppCompatActivity {
 
     String TAG = "ADD_PORTFOLIO";
     public static final String EXTRA_NAME = "com.localli.deepak.cryptotips.portfolio.EXTRA_NAME",
@@ -63,6 +64,7 @@ public class AddPortfolio extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_portfolio);
+        setupTheme();
 
         // initialise volley callback
         initVolleyCallback();
@@ -111,7 +113,7 @@ public class AddPortfolio extends AppCompatActivity {
                     amount = Double.parseDouble(s.trim());
                     double totalValue = currentPrice*amount;
 
-                    PriceFormatter.setPriceFormatTextView(AddPortfolio.this,totalValueTv,totalValue);
+                    PriceFormatter.setPriceFormatTextView(AddPortfolioActivity.this,totalValueTv,totalValue);
                     doneFab.setVisibility(View.VISIBLE);
                 }
             }
@@ -277,6 +279,15 @@ public class AddPortfolio extends AppCompatActivity {
 
         PriceFormatter.setPriceFormatTextView(this,totalValueTv,amount*coinItem.getCurrentPrice());
 
+    }
+
+    public void setupTheme(){
+        boolean isNightModeEnabled = SharedPrefSimpleDB.getIsNightModeEnabled(this);
+        if(isNightModeEnabled){
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }else{
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
     }
 
 }

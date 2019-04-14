@@ -16,7 +16,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.localli.deepak.cryptotips.DataBase.SharedPrefSimpleDB;
@@ -28,10 +30,11 @@ import com.localli.deepak.cryptotips.DataBase.SharedPrefSimpleDB;
 public class AboutUsFragment extends Fragment {
 
     LinearLayout githubLL, linkedinLL, emailLL, playstoreLL;
-    LinearLayout preferredCurrencyLL, rateUsLL, noOfCoinsLL;
+    LinearLayout preferredCurrencyLL, rateUsLL, noOfCoinsLL,themeLL;
 
     TextView selectedPrefCurrencyTv, privacyPolicyTv, sendFeedbackTv,
         selectedNoOfCoinsTv;
+    Switch isNightModeEnabledSwitch;
 
 
     // Insert your Application Package Name
@@ -71,77 +74,41 @@ public class AboutUsFragment extends Fragment {
         privacyPolicyTv = view.findViewById(R.id.profile_privacy_policy_tv);
         sendFeedbackTv = view.findViewById(R.id.profile_send_feedback_tv);
         selectedNoOfCoinsTv = view.findViewById(R.id.profile_selected_no_of_coins_tv);
+        isNightModeEnabledSwitch = view.findViewById(R.id.profile_theme_switch);
+        themeLL = view.findViewById(R.id.profile_settings_theme_ll);
 
 
 
-        githubLL.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startIntent(getString(R.string.github_id));
-            }
-        });
+        githubLL.setOnClickListener(v -> startIntent(getString(R.string.github_id)));
 
-        linkedinLL.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startIntent(getString(R.string.linkedin_id));
-            }
-        });
+        linkedinLL.setOnClickListener(v -> startIntent(getString(R.string.linkedin_id)));
 
-        playstoreLL.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startIntent(getString(R.string.playstore_id));
-            }
-        });
+        playstoreLL.setOnClickListener(v -> startIntent(getString(R.string.playstore_id)));
 
-        privacyPolicyTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startIntent(getString(R.string.privacy_policy_url));
-            }
-        });
+        privacyPolicyTv.setOnClickListener(v -> startIntent(getString(R.string.privacy_policy_url)));
 
-        emailLL.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        emailLL.setOnClickListener(v -> startEmailIntent(getString(R.string.email_id),""));
 
-                startEmailIntent(getString(R.string.email_id),"");
-            }
-        });
+        rateUsLL.setOnClickListener(v -> startActivity(new Intent(Intent.ACTION_VIEW, Uri
+                .parse("market://details?id=" + PACKAGE_NAME))));
 
-        rateUsLL.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri
-                        .parse("market://details?id=" + PACKAGE_NAME)));
-            }
-        });
+        sendFeedbackTv.setOnClickListener(v -> startEmailIntent(getString(R.string.email_id),"Feedback"));
 
-        sendFeedbackTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startEmailIntent(getString(R.string.email_id),"Feedback");
-            }
-        });
+        preferredCurrencyLL.setOnClickListener(v -> showCurrencyList());
 
-        preferredCurrencyLL.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showCurrencyList();
-            }
-        });
+        noOfCoinsLL.setOnClickListener(v -> setUpNoOfCoins());
 
-        noOfCoinsLL.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setUpNoOfCoins();
-            }
+        themeLL.setOnClickListener(v ->{
+            boolean isNightModeEnabled = SharedPrefSimpleDB.getIsNightModeEnabled(context);
+            SharedPrefSimpleDB.saveIsNightModeEnabled(context,!isNightModeEnabled);
+            setupPreferredTheme();
+            getActivity().finish();
+            startActivity(new Intent(getActivity(),NavigationActivity.class));
         });
 
         setupPreferredCurrencyTextView();
         setupSelectedNoOfCoinsTextView();
-
+        setupPreferredTheme();
     }
 
 
@@ -195,6 +162,10 @@ public class AboutUsFragment extends Fragment {
         selectedNoOfCoinsTv.setText(noOfCoins+"");
     }
 
+    private void setupPreferredTheme(){
+        boolean isNightModeEnabled = SharedPrefSimpleDB.getIsNightModeEnabled(context);
+        isNightModeEnabledSwitch.setChecked(isNightModeEnabled);
+    }
     private void setUpNoOfCoins(){
 
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);

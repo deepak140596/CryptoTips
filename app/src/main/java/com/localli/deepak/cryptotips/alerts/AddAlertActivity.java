@@ -1,6 +1,8 @@
 package com.localli.deepak.cryptotips.alerts;
 
 import android.annotation.SuppressLint;
+
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -72,10 +74,9 @@ public class AddAlertActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_alert);
+        setupTheme();
 
         CoinItem receivedCoinItem = (CoinItem)getIntent().getSerializableExtra(getString(R.string.coin_id));
-
-
 
         // initialise Supported currencies volley callback
         initGetSupportedCurrenciesVolleyCallback();
@@ -457,5 +458,14 @@ public class AddAlertActivity extends AppCompatActivity {
                 SharedPrefSimpleDB.getPreferredCurrency(this),riseDrop,0);
 
         alertViewModel.insert(alertEntity);
+    }
+
+    public void setupTheme(){
+        boolean isNightModeEnabled = SharedPrefSimpleDB.getIsNightModeEnabled(this);
+        if(isNightModeEnabled){
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }else{
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
     }
 }

@@ -144,4 +144,18 @@ public class SharedPrefSimpleDB {
         editor.apply();
         editor.commit();
     }
+
+    public static void saveIsNightModeEnabled(Context context, boolean isNight){
+        SharedPreferences sharedPreferences = context.getSharedPreferences("theme_preference",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear().putBoolean("is_night_mode_enabled",isNight);
+        editor.apply();
+        editor.commit();
+    }
+
+    public static boolean getIsNightModeEnabled(Context context){
+        SharedPreferences sharedPreferences = context.getSharedPreferences("theme_preference",Context.MODE_PRIVATE);
+        boolean isNightModeEnabled = sharedPreferences.getBoolean("is_night_mode_enabled",false);
+        return isNightModeEnabled;
+    }
 }

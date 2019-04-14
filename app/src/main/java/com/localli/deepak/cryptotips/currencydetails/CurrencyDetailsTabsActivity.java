@@ -3,6 +3,8 @@ package com.localli.deepak.cryptotips.currencydetails;
 import android.content.Intent;
 import android.graphics.Color;
 import com.google.android.material.tabs.TabLayout;
+
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +15,7 @@ import android.view.MenuItem;
 import com.android.volley.VolleyError;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.localli.deepak.cryptotips.DataBase.SharedPrefSimpleDB;
 import com.localli.deepak.cryptotips.DataBase.alerts.AlertEntity;
 import com.localli.deepak.cryptotips.R;
 import com.localli.deepak.cryptotips.currencydetails.chartandtable.GraphFragment;
@@ -44,6 +47,7 @@ public class CurrencyDetailsTabsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_currency_details_tabs);
+        setupTheme();
 
         toolbar = findViewById(R.id.activity_currency_details_toolbar);
         setSupportActionBar(toolbar);
@@ -136,5 +140,14 @@ public class CurrencyDetailsTabsActivity extends AppCompatActivity {
         TabLayout tabLayout = findViewById(R.id.activity_currency_details_tab_layout);
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setSelectedTabIndicatorColor(Color.WHITE);
+    }
+
+    public void setupTheme(){
+        boolean isNightModeEnabled = SharedPrefSimpleDB.getIsNightModeEnabled(this);
+        if(isNightModeEnabled){
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }else{
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
     }
 }

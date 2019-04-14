@@ -49,54 +49,63 @@
                         android:id="@+id/frag_graph_choice_24hr"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="?android:attr/textColorPrimary"
                         android:text="24hr"/>
 
                     <com.nex3z.togglebuttongroup.button.CircularToggle
                         android:id="@+id/frag_graph_choice_7day"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="?android:attr/textColorPrimary"
                         android:text="7D"/>
 
                     <com.nex3z.togglebuttongroup.button.CircularToggle
                         android:id="@+id/frag_graph_choice_14day"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="?android:attr/textColorPrimary"
                         android:text="14D"/>
 
                     <com.nex3z.togglebuttongroup.button.CircularToggle
                         android:id="@+id/frag_graph_choice_1M"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="?android:attr/textColorPrimary"
                         android:text="1M"/>
 
                     <com.nex3z.togglebuttongroup.button.CircularToggle
                         android:id="@+id/frag_graph_choice_2M"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="?android:attr/textColorPrimary"
                         android:text="2M"/>
 
                     <com.nex3z.togglebuttongroup.button.CircularToggle
                         android:id="@+id/frag_graph_choice_3M"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="?android:attr/textColorPrimary"
                         android:text="3M"/>
 
                     <com.nex3z.togglebuttongroup.button.CircularToggle
                         android:id="@+id/frag_graph_choice_6M"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="?android:attr/textColorPrimary"
                         android:text="6M"/>
 
                     <com.nex3z.togglebuttongroup.button.CircularToggle
                         android:id="@+id/frag_graph_choice_1yr"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="?android:attr/textColorPrimary"
                         android:text="1yr"/>
 
                     <com.nex3z.togglebuttongroup.button.CircularToggle
                         android:id="@+id/frag_graph_choice_all"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="?android:attr/textColorPrimary"
                         android:text="All"/>
 
                 </com.nex3z.togglebuttongroup.SingleSelectToggleGroup>
@@ -267,12 +276,14 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:textColor="@android:color/tab_indicator_text"
                         android:text="Rank : "/>
                     <TextView
                         android:id="@+id/frag_graph_rank_tv"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:textColor="@android:color/tab_indicator_text"
                         android:textAlignment="textEnd"
                         android:text="#1"/>
                 </LinearLayout>
@@ -315,12 +326,14 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:textColor="@android:color/tab_indicator_text"
                         android:text="24hr price change : "/>
                     <TextView
                         android:id="@+id/frag_graph_24hr_price_change_tv"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:textColor="@android:color/tab_indicator_text"
                         android:textAlignment="textEnd"
                         android:text="+ $130"/>
                 </LinearLayout>
@@ -364,12 +377,14 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:textColor="@android:color/tab_indicator_text"
                         android:text="24hr low : "/>
                     <TextView
                         android:id="@+id/frag_graph_24hr_low_tv"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:textColor="@android:color/tab_indicator_text"
                         android:textAlignment="textEnd"
                         android:text="$ 4100"/>
                 </LinearLayout>

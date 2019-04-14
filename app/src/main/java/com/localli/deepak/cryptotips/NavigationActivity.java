@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import androidx.annotation.NonNull;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -20,6 +22,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.localli.deepak.cryptotips.DataBase.SharedPrefSimpleDB;
 import com.localli.deepak.cryptotips.alerts.AlertBackgroundService;
 import com.localli.deepak.cryptotips.alerts.AlertFragment;
 import com.localli.deepak.cryptotips.coinlists.ListFragment;
@@ -41,23 +44,12 @@ public class NavigationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
 
-
-
         // as soon as the app starts, create a notification channel
         createNotificationChannel();
-        // OneSignal Initialization
-        /*OneSignal.startInit(this)
-                .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
-                .unsubscribeWhenNotificationsAreDisabled(true)
-                .init();*/
+
         noInternetState = findViewById(R.id.navigation_no_internet_state_ll);
         retryBtn = findViewById(R.id.nav_retry_ll);
-        retryBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startUI();
-            }
-        });
+        retryBtn.setOnClickListener(v -> startUI());
         startUI();
 
 
@@ -67,7 +59,7 @@ public class NavigationActivity extends AppCompatActivity {
         if(isNetworkConnected()) {
 
             noInternetState.setVisibility(View.GONE);
-            bottomNavigation = (BottomNavigationView) findViewById(R.id.bottom_navigation_bar);
+            bottomNavigation = findViewById(R.id.bottom_navigation_bar);
             bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
             coordinatorLayout = findViewById(R.id.navigation_coordinator_layout);
 
@@ -187,5 +179,20 @@ public class NavigationActivity extends AppCompatActivity {
     private boolean isNetworkConnected(){
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         return cm.getActiveNetworkInfo() != null;
+    }
+
+    public void setupTheme(){
+        boolean isNightModeEnabled = SharedPrefSimpleDB.getIsNightModeEnabled(this);
+        if(isNightModeEnabled){
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }else{
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setupTheme();
     }
 }

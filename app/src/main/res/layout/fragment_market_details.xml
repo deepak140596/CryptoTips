@@ -25,12 +25,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textColor="@android:color/tab_indicator_text"
                 android:text="Rank : "/>
             <TextView
                 android:id="@+id/frag_market_coin_rank_tv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textColor="@android:color/tab_indicator_text"
                 android:textAlignment="textEnd"
                 android:text="1"/>
         </LinearLayout>
@@ -73,12 +75,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textColor="@android:color/tab_indicator_text"
                 android:text="Current Supply : "/>
             <TextView
                 android:id="@+id/frag_market_current_supply_tv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textColor="@android:color/tab_indicator_text"
                 android:textAlignment="textEnd"
                 android:text="16,000,000"/>
         </LinearLayout>
@@ -97,12 +101,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textColor="@android:color/tab_indicator_text"
                 android:text="Total Supply : "/>
             <TextView
                 android:id="@+id/frag_market_total_supply_tv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textColor="@android:color/tab_indicator_text"
                 android:textAlignment="textEnd"
                 android:text="21,000,000"/>
         </LinearLayout>
@@ -121,12 +127,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textColor="@android:color/tab_indicator_text"
                 android:text="Market Cap : "/>
             <TextView
                 android:id="@+id/frag_market_mkt_cap_tv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textColor="@android:color/tab_indicator_text"
                 android:textAlignment="textEnd"
                 android:text="16,000,000"/>
         </LinearLayout>
@@ -169,12 +177,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textColor="@android:color/tab_indicator_text"
                 android:text="High 24hr : "/>
             <TextView
                 android:id="@+id/frag_market_high24hr_tv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textColor="@android:color/tab_indicator_text"
                 android:textAlignment="textEnd"
                 android:text="16,000,000"/>
         </LinearLayout>
@@ -217,12 +227,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textColor="@android:color/tab_indicator_text"
                 android:text="Price Change 24hr : "/>
             <TextView
                 android:id="@+id/frag_market_price_change_24hr_tv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textColor="@android:color/tab_indicator_text"
                 android:textAlignment="textEnd"
                 android:text="16,000,000"/>
         </LinearLayout>
@@ -265,12 +277,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textColor="@android:color/tab_indicator_text"
                 android:text="Market Cap 24hr Change : "/>
             <TextView
                 android:id="@+id/frag_market_cap_change_tv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textColor="@android:color/tab_indicator_text"
                 android:textAlignment="textEnd"
                 android:text="16,000,000"/>
         </LinearLayout>
@@ -313,12 +327,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textColor="@android:color/tab_indicator_text"
                 android:text="ATH : "/>
             <TextView
                 android:id="@+id/frag_market_ath_tv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textColor="@android:color/tab_indicator_text"
                 android:textAlignment="textEnd"
                 android:text="16,000,000"/>
         </LinearLayout>

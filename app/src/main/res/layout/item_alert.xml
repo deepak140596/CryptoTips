@@ -35,10 +35,13 @@
         android:id="@+id/item_alert_foreground"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/color_white"
             android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -62,7 +65,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="8dp"
                     android:textSize="16sp"
-                    android:textColor="@color/black"
+                    android:textColor="?android:attr/textColorPrimary"
                     android:text="Bitcoin (BTC)"/>
                 <LinearLayout
                     android:layout_width="0dp"
@@ -106,7 +109,6 @@
 
 
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -141,6 +143,7 @@
                     android:text="$ 3543.333"/>
             </LinearLayout>
         </LinearLayout>
+        </androidx.cardview.widget.CardView>
     </RelativeLayout>
 
 

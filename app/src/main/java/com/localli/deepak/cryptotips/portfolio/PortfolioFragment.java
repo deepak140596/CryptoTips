@@ -162,7 +162,7 @@ public class PortfolioFragment extends Fragment implements RecyclerItemTouchHelp
         addFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(activity,AddPortfolio.class);
+                Intent intent = new Intent(activity, AddPortfolioActivity.class);
                 startActivityForResult(intent,ADD_PORTFOLIO_REQUEST);
 
             }
@@ -255,11 +255,11 @@ public class PortfolioFragment extends Fragment implements RecyclerItemTouchHelp
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode==ADD_PORTFOLIO_REQUEST && resultCode == RESULT_OK){
-            String name = data.getStringExtra(AddPortfolio.EXTRA_NAME);
-            String id = data.getStringExtra(AddPortfolio.EXTRA_ID);
-            String symbol = data.getStringExtra(AddPortfolio.EXTRA_SYMBOL);
-            double amount = data.getDoubleExtra(AddPortfolio.EXTRA_AMT,0);
-            double boughtAt = data.getDoubleExtra(AddPortfolio.EXTRA_IP,0);
+            String name = data.getStringExtra(AddPortfolioActivity.EXTRA_NAME);
+            String id = data.getStringExtra(AddPortfolioActivity.EXTRA_ID);
+            String symbol = data.getStringExtra(AddPortfolioActivity.EXTRA_SYMBOL);
+            double amount = data.getDoubleExtra(AddPortfolioActivity.EXTRA_AMT,0);
+            double boughtAt = data.getDoubleExtra(AddPortfolioActivity.EXTRA_IP,0);
 
             PortfolioEntity entity = new PortfolioEntity(id,name,symbol,(float)amount,0.0f);
             portfolioViewModel.insert(entity);
